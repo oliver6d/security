@@ -1,0 +1,42 @@
+<html>
+  <head>
+  	<title>Security Questions for Everyone </title>
+  	{% load static %}
+	<link rel="stylesheet" href='{% static "dist/fastselect.css" %}'></script>
+  	<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Handlee|Roboto:300,400,500,700" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script src='{% static "polls/script.js" %}'></script>
+	<script src='{% static "dist/fastselect.standalone.js" %}'></script>
+  	<script type="text/javascript"> window.CSRF_TOKEN = "{{ csrf_token }}"; </script>
+	
+  </head>
+
+<body>
+
+<div class="block title">
+	<h2>Security Questions for Everyone</h2>
+	<h3>
+		Give your personal feedback on security questions, contribute as much as you feel comfortable
+		<br>One of the greatest weaknesses of security questions is their inability to span the cultural divide.  Taken in other contexts, many security questions could be less ineffective and less secure.
+	</h3>
+</div>
+
+<!--FORM-->
+<div>{% include 'polls/form.html' %}</div>
+<!--FORM-->
+
+
+<!--DETAIL-->
+<div>{% include 'polls/detail.html' %}</div>
+<!--DETAIL-->
+
+<div class="block input">
+	<h2>Add a new question:	</h2>
+	<input maxlength="100" type="text" id="addQuestion">
+	<button class="submit" onclick="question(this)">➤</button>
+</div>
+</body>
+
+</html>

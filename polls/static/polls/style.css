@@ -1,0 +1,165 @@
+/*
+    colorRed: #FF6666;
+    colorBlue: #6180DD;
+    colorGreen: #5FDD9D;
+    colorPurple: #88498F;
+*/
+body {
+    background: white;
+	font-family: 'Roboto', sans-serif;
+	font-weight:400;
+    font-size: .9em;
+}
+h2,h3,p{
+	margin: 0px;
+}
+h2{
+	font-size:1.2em;
+	margin: 10px 15px;
+	font-weight: 400;
+}
+.diversity h2{
+	font-family: 'Handlee', cursive;
+    font-size: 1.8em;
+    font-weight: 600;
+
+}
+h3{
+	font-size:1.1em;
+	font-weight: 300;
+	margin-bottom: 5px;
+}
+.diversity h3{
+	padding: 2em 3em;
+	font-size: 1.2em;
+}
+
+.fstElement{
+	border-radius: 5px;
+  	font-size: 10px;
+  	margin: 1.5em 1em;
+}
+.cpyElement{
+	font-size:1.1em;
+	padding: 8px;
+	width: 6em;
+	bottom: .8em;
+}
+.fstControls{
+	width: 40em;
+}
+
+
+div.block{
+	background-color: #E0E0E0;
+	margin: 20px;
+	padding: 5px;
+	border-radius: 10px;
+}
+div.block.diversity{
+	background-color: #6180DD;
+	color: white;
+}
+div.blockRow {
+	align-items: flex-start;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+div.blockRow.diversity{
+    flex-wrap: wrap;
+}
+@media screen and (max-width: 900px) {
+	div.blockRow {
+    	flex-wrap: wrap;
+    }
+    div.category {
+    	width: 50%;
+    	min-width: 40%;
+    	max-width: 60%;
+    }
+    div.info{
+    	width:100%;
+    	min-width: 100%;
+    }
+}
+@media screen and (max-width: 450px) {
+    div.blockRow {
+    	display: inline-block;
+    }
+    div.category {
+    	width: 100%;
+    	min-width: 100%;
+    }
+}
+div.info{
+	width: 25%;
+}
+div.info.form{
+	width: 70%;
+	display:inline-block;
+}
+div.category {
+	padding:10px 10px 5px;
+	margin:4px;
+	flex:1;
+	max-width: 500px;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid black;
+	border-radius: 5px;
+
+}
+div.comments{
+	flex-grow:1;
+	min-height: 8px;
+}
+div.comment{
+	margin: 3px 0px;
+}
+
+
+
+div.input{
+	display: flex;
+	flex-direction: row;
+	white-space: nowrap;
+}
+div.input input{
+	flex: 1 1;
+	max-width: 600px;
+	min-width: 150px;
+	max-height: 2em;
+	margin: 3px 8px 0px 0px;
+}
+div.block.input input{
+	margin-top: 6px;
+}
+
+
+div.buttons {
+	margin: 0px;
+	padding: 0px 6px 0px 0px;
+	overflow:visible;
+	vertical-align: middle;
+	float:right;
+}
+div.comment div.buttons{
+	float:left;
+}
+
+
+button{
+	color: #444444;
+	font-size: 120%;
+	border:none;
+	padding:0em;
+	margin: -0.2em;
+	background-color: transparent;
+}
+button.selected[value="1"]{
+	color: #3EDD8D;
+}
+button.selected[value="-1"]{
+	color: #FF6666;
+}
