@@ -14,6 +14,28 @@ from polls.models import *
 #     context = {'question_list': question_list}
 #     return render(request, 'polls/detail.html', context)
 
+def test(request):
+	return render(request, 'fake.html')
+
+	questions = Question.objects.order_by('-text')[:5]
+
+	user_id = request.get_host()
+	user,created = User.objects.get_or_create(host=user_id)
+
+	#upvotes = Votable.objects.filter(vote__user = user, vote__vote = 1)
+	#downvotes = Votable.objects.filter(vote__user = user, vote__vote = -1)
+	context =  {
+		'question_list': questions, 
+		'upvote_question': Question.objects.filter(vote__user = user, vote__vote = 1),
+		'downvote_question': Question.objects.filter(vote__user = user, vote__vote = -1),
+		'upvote_category': Category.objects.filter(vote__user = user, vote__vote = 1),
+		'downvote_category': Category.objects.filter(vote__user = user, vote__vote = -1),
+		'upvote_comment': Comment.objects.filter(vote__user = user, vote__vote = 1),
+		'downvote_comment': Comment.objects.filter(vote__user = user, vote__vote = -1),
+	}
+	return render(request, 'test.html', context)
+
+
 def index(request):
 	return render(request, 'fake.html')
 
