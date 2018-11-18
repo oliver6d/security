@@ -14,8 +14,15 @@ class Votable(models.Model):
 
 class User(models.Model):
 	host = models.CharField(max_length=40, primary_key=True)
-	ethnicity = models.CharField(max_length=200, default='')
 	userVotes = models.ManyToManyField(Votable, through='Vote')
+
+	age = models.IntegerField(default=0)
+	gender = models.CharField(max_length=200, default='')
+	education = models.CharField(max_length=200, default='')
+	income = models.CharField(max_length=200, default='')
+	language = models.CharField(max_length=200, default='')
+	country = models.CharField(max_length=200, default='')
+	other = models.CharField(max_length=200, default='')
 	def __str__(self):
 		return str(self.host)
 
@@ -37,11 +44,6 @@ class Comment(Votable):
 class Vote(models.Model):
 	votable = models.ForeignKey(Votable, on_delete=models.CASCADE)
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
-	VOTES = (
-		( 1, 'upVote'),
-		( 0, 'noVote'),
-		(-1, 'downVote'),
-	)
-	vote = models.IntegerField(choices=VOTES, default=0)
+	vote = models.IntegerField(default=0)
 	def __str__(self):
 		return str(self.votable)

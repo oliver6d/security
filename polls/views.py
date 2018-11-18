@@ -7,7 +7,7 @@ from django.template import loader
 from django.views import generic
 from django.utils import timezone
 
-from .models import *
+from polls.models import *
 
 # def view(request):
 #     question_list = Question.objects.order_by('-text')[:5]
@@ -22,7 +22,7 @@ def index(request):
 
 	#upvotes = Votable.objects.filter(vote__user = user, vote__vote = 1)
 	#downvotes = Votable.objects.filter(vote__user = user, vote__vote = -1)
-	data =  {
+	context =  {
 		'question_list': questions, 
 		'upvote_question': Question.objects.filter(vote__user = user, vote__vote = 1),
 		'downvote_question': Question.objects.filter(vote__user = user, vote__vote = -1),
@@ -31,38 +31,19 @@ def index(request):
 		'upvote_comment': Comment.objects.filter(vote__user = user, vote__vote = 1),
 		'downvote_comment': Comment.objects.filter(vote__user = user, vote__vote = -1),
 	}
-	return render(request, 'polls/index.html', data)
+	return render(request, 'index.html', context)
+
 
 def detail(request):
 	questions = Question.objects.order_by('-text')[:5]
 	html = loader.render_to_string(
-		'polls/detail.html',
+		'detail.html',
 		{'question_list': questions}
 	)
 	output_data = {
 		'detail_html': html,
 	}
 	return JsonResponse(output_data)
-
-
-
-def vote(request):
-	user_id = request.get_host()
-	votable_id = request.POST.get('id')
-	value = request.POST.get('value')
-
-	user,created = User.objects.get_or_create(host=user_id)
-	votable = get_object_or_404(Votable, pk=votable_id)
-
-	v, created = Vote.objects.get_or_create(votable=votable, user=user)
-	v.vote = value
-	v.save()
-
-	data = {
-		'id': v.votable.pk,
-		'value': v.vote,
-	}
-	return JsonResponse(data)
 
 
 def comment(request):
@@ -96,3 +77,22 @@ def question(request):
 	Category(categoryQuestion=q, text="Unique").save()
 
 	return detail(request)
+
+
+def vote(request):
+	user_id = request.get_host()
+	votable_id = request.POST.get('id')
+	value = request.POST.get('value')
+
+	user,created = User.objects.get_or_create(host=user_id)
+	votable = get_object_or_404(Votable, pk=votable_id)
+
+	v, created = Vote.objects.get_or_create(votable=votable, user=user)
+	v.vote = value
+	v.save()
+
+	data = {
+		'id': v.votable.pk,
+		'value': v.vote,
+	}
+	return JsonResponse(data)
