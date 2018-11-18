@@ -2,13 +2,13 @@
   <head>
   	<title>Security Questions for Everyone </title>
   	{% load static %}
-	<link rel="stylesheet" href='{% static "dist/fastselect.css" %}'></script>
-  	<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+	<link rel="stylesheet" type="text/css" href='{% static "fastselect.css" %}'></script>
+  	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Handlee|Roboto:300,400,500,700" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-	<script src='{% static "polls/script.js" %}'></script>
-	<script src='{% static "dist/fastselect.standalone.js" %}'></script>
+	<script src='{% static "script.js" %}'></script>
+	<script src='{% static "fastselect.standalone.js" %}'></script>
   	<script type="text/javascript"> window.CSRF_TOKEN = "{{ csrf_token }}"; </script>
 	
   </head>
