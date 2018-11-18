@@ -93,10 +93,10 @@ def question(request):
 
 	q = Question(text=question, questionUser = user)
 	q.save()
-	Category(categoryQuestion=q, text="Memorable").save()
-	Category(categoryQuestion=q, text="Relevant").save()
 	Category(categoryQuestion=q, text="Secret").save()
 	Category(categoryQuestion=q, text="Unique").save()
+	Category(categoryQuestion=q, text="Relevant").save()
+	Category(categoryQuestion=q, text="Reproducible").save()
 
 	return detail(request)
 
