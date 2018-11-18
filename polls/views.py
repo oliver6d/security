@@ -15,6 +15,8 @@ from polls.models import *
 #     return render(request, 'polls/detail.html', context)
 
 def index(request):
+	return render(request, 'fake.html')
+
 	questions = Question.objects.order_by('-text')[:5]
 
 	user_id = request.get_host()
