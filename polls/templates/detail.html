@@ -29,9 +29,9 @@
 		{% endfor %}
 	</div>
 	<div class=input>
-		<input size="15" maxlength="150" type="text" id="comment{{ category.id }}"
-		onKeyDown="if(event.keyCode==13) comment(this, {{category.id}});" >
-		<button onclick="comment(this, {{category.id}})">➤</button>
+		<input size="15" maxlength="150" type="text" id="comment{{ question.id }}"
+		onKeyDown="if(event.keyCode==13) comment(this, {{question.id}});" >
+		<button onclick="comment(this, {{question.id}})">➤</button>
 	</div>
 </div>
 {% endfor %}

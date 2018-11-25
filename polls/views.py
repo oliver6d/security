@@ -25,8 +25,6 @@ def detail(request, id):
 		'question_list': questions, 
 		'upvote_question': Question.objects.filter(vote__user = user, vote__vote = 1),
 		'downvote_question': Question.objects.filter(vote__user = user, vote__vote = -1),
-		'upvote_category': Category.objects.filter(vote__user = user, vote__vote = 1),
-		'downvote_category': Category.objects.filter(vote__user = user, vote__vote = -1),
 		'upvote_comment': Comment.objects.filter(vote__user = user, vote__vote = 1),
 		'downvote_comment': Comment.objects.filter(vote__user = user, vote__vote = -1),
 	}
@@ -52,8 +50,6 @@ def index(request, id):
 		'question_list': questions, 
 		'upvote_question': Question.objects.filter(vote__user = user, vote__vote = 1),
 		'downvote_question': Question.objects.filter(vote__user = user, vote__vote = -1),
-		'upvote_category': Category.objects.filter(vote__user = user, vote__vote = 1),
-		'downvote_category': Category.objects.filter(vote__user = user, vote__vote = -1),
 		'upvote_comment': Comment.objects.filter(vote__user = user, vote__vote = 1),
 		'downvote_comment': Comment.objects.filter(vote__user = user, vote__vote = -1),
 	}
@@ -70,12 +66,11 @@ def comment(request, id):
 	if(len(comment) < 5):
 		return
 
-	category_id = request.POST.get('id')
-	category = get_object_or_404(Category, pk=category_id)
+	question_id = request.POST.get('id')
+	question = get_object_or_404(Question, pk=question_id)
 
 	c = Comment(text=comment, 
-		commentQuestion = category.categoryQuestion,
-		commentCategory = category,
+		commentQuestion = question,
 		commentUser = user)
 	c.save()
 
@@ -94,10 +89,6 @@ def question(request, id):
 
 	q = Question(text=question, questionUser = user)
 	q.save()
-	Category(categoryQuestion=q, text="Secret").save()
-	Category(categoryQuestion=q, text="Unique").save()
-	Category(categoryQuestion=q, text="Relevant").save()
-	Category(categoryQuestion=q, text="Reproducible").save()
 
 	return detail(request, id)
 
@@ -109,15 +100,19 @@ def vote(request, id):
 		return HttpResponseRedirect('/')
 
 	votable_id = request.POST.get('id')
-	value = request.POST.get('value')
+	value = int(request.POST.get('value'))
 	votable = get_object_or_404(Votable, pk=votable_id)
 
 	v, created = Vote.objects.get_or_create(votable=votable, user=user)
-	v.vote = value
+
+	if (not created) and (v.vote == value):
+		v.vote = 0
+	else:
+		v.vote = value
 	v.save()
 
 	data = {
-		'id': v.votable.pk,
+		'id': votable_id,
 		'value': v.vote,
 	}
 	return JsonResponse(data)

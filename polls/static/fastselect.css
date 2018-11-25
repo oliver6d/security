@@ -39,7 +39,9 @@ General styling
   border: 1px solid #D7D7D7;
   box-sizing: border-box;
   color: #111;
-  font-size: 1.1em;
+  border-radius: .5em;
+  margin: 1.5em 1em;
+  font-size: 0.7em;
   background-color: #fff; }
   .fstElement > select,
   .fstElement > input {
@@ -84,7 +86,7 @@ General styling
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  border: 1px solid #D7D7D7;
+  border: 0.5px solid #D7D7D7;
   border-top: 0;
   background-color: #FFF;
   display: none; }

@@ -1,3 +1,4 @@
+/*
 function load() {
     $.ajax({
       type: 'posts_html',
@@ -11,30 +12,7 @@ function load() {
       }
   });
 };
-
-function aboutUser(input) {
-    var text = document.getElementById("age").value;
-    var text = document.getElementById("gender").value;
-    var text = document.getElementById("education").value;
-    var text = document.getElementById("income").value;
-    var text = document.getElementById("language").value;
-    var text = document.getElementById("nationality").value;
-    var text = document.getElementById("other").value;
-
-    $.ajax({
-        type:"POST",
-        url: 'question/',
-        data: {
-            'question': text,
-            'csrfmiddlewaretoken': window.CSRF_TOKEN
-        },
-        dataType: 'json',
-        success: function (data) {
-            $('#detail').replaceWith(data.detail_html);
-        }
-      });
-    return; 
-};
+*/
 
 function toggle(button, id) {
 	$.ajax({

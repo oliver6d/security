@@ -18,7 +18,6 @@ from .models import *
 
 admin.site.register(Votable)
 admin.site.register(Question)
-admin.site.register(Category)
 admin.site.register(Comment)
 admin.site.register(Profile)
 admin.site.register(Vote)

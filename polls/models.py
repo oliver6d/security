@@ -43,14 +43,8 @@ class Profile(models.Model):
 class Question(Votable):
 	questionUser = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True)
 
-class Category(Votable):
-	categoryQuestion = models.ForeignKey(Question, on_delete=models.CASCADE)
-	class Meta:
-		ordering = ['text']
-
 class Comment(Votable):
 	commentQuestion = models.ForeignKey(Question, on_delete=models.CASCADE)
-	commentCategory = models.ForeignKey(Category, on_delete=models.CASCADE)
 	commentUser = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True)
 	#automatically vote
 
