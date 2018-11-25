@@ -130,10 +130,10 @@ def login(request):
 
 	# Get User
 	try:
-		user_id = request.POST.get('useridnum')
-		user = User.objects.get(userID = user_id)
+		users_id = request.POST.get('useridnum')
+		user = User.objects.get(userID = int(users_id))
 	# Create User
-	except ObjectDoesNotExist:
+	except:
 		user_id = random.getrandbits(32)
 		#TODO: check that this user does not already exist
 		#TODO: don't create user unles form is submitted
