@@ -134,12 +134,12 @@ def login(request):
 		user = User.objects.get(userID = int(users_id))
 	# Create User
 	except:
-		user_id = random.getrandbits(32)
+		users_id = random.getrandbits(32)
 		#TODO: check that this user does not already exist
 		#TODO: don't create user unles form is submitted
-		user = User.objects.create(userID = user_id)
+		user = User.objects.create(userID = users_id)
 
-	return HttpResponseRedirect('form/'+str(user_id)+'/')
+	return HttpResponseRedirect('form/'+str(users_id)+'/')
 
 	#TODO: every time refresh, creates a new user and resubmits post
 
