@@ -1,29 +1,29 @@
 {% extends "login.html" %}
 {% block logincolor %}
-<div class="block diversity">
+<div class="block">
 {% endblock %}
 
 {% block content %}
 <form action="" method="post">
 {% csrf_token %}
-<div class="block purple diversity">
+<div class="block purple">
 	<div>
 		<h1>What makes you unique?
 			<span style="float:right"> PROFILE # {{ form.userNum.value }} </span>
 		</h1>
 	</div>
-	<div class="blockRow diversity">
-		<div class="info">
-			<h3> Each field is <b>optional</b>
+	<div class="row">
+		<div class="blockleft">
+			<h2> Each field is <b>optional</b>
 				<br> Input will be used to measure response diversity,
-			so please answer <b>honestly</b> </h3>
+			so please answer <b>honestly</b> </h2>
 		</div>
-		<div class="info form blockRow">
+		<div class="blockbody row">
 			{% for field in form %}
 				{{ field.errors }}
 				{{ field }}
 			{% endfor %}
-			<button class="cpyELement fstElement submit" onclick="question(this)">Submit</button>
+			<button class="cpyELement fstElement" onclick="question(this)">Submit</button>
 		</div>
 	</div>
 </div>

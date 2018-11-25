@@ -18,16 +18,14 @@
 <form action="" method="POST">
 {% csrf_token %}
 {% block logincolor %}
-<div class="block purple diversity">
+<div class="block purple">
 {% endblock %}
 		<h1>Load Profile</h1>
-	<div class="blockRow diversity">
-		<div>
-				<h3><b>Returning Users:</b> enter profile # to return to last session</h3><br>
-				<h3><b>First Time:</b> we'll create one for you</h3>
-			</div>
+	<div class="row">
+				<h2>If you are a returning user, enter your profile # <br>
+				otherwise, <b>click continue</b> to create a new profile</h2>
 				<input name="userInt" type="number" class="cpyElement fstElement" placeholder="Profile #">
-				<input type="submit" value="Continue" class="cpyELement fstElement submit">
+				<input type="submit" value="Continue" class="cpyELement fstElement">
 	</div>
 </div>
 </form>

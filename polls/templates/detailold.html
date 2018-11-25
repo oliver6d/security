@@ -1,0 +1,101 @@
+<head>
+{% load static %}
+</head>
+{% if question_list %}
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+
+<style>
+
+	div.category {
+		padding:10px 10px 5px;
+		margin:4px;
+		flex:1;
+		max-width: 500px;
+		display: flex;
+		flex-direction: column;
+		border: 1px solid black;
+		border-radius: 5px;
+	}
+	div.comments{
+		flex-grow:1;
+		min-height: 8px;
+	}
+	@media screen and (max-width: 900px) {
+		div.blockRow {
+	    	flex-wrap: wrap;
+	    }
+	    div.category {
+	    	width: 50%;
+	    	min-width: 40%;
+	    	max-width: 60%;
+	    }
+	    div.info{
+	    	width:100%;
+	    	min-width: 100%;
+	    }
+	}
+	@media screen and (max-width: 450px) {
+	    div.blockRow {
+	    	display: inline-block;
+	    }
+	    div.category {
+	    	width: 100%;
+	    	min-width: 100%;
+	    }
+	}
+</style>
+
+
+<div id="detail">
+{% for question in question_list %}
+	<div class="block">
+	<h2>{{ question.text }}
+		<div class="qbuttons buttons">
+			{{ question.upvotes }}
+			<button id="Y{{ question.id }}" value="1" onclick="toggle(this, {{question.id}})" 
+				{% if question in upvote_question %} class="selected" {% endif %} >▲</button>
+			<button id="N{{ question.id }}" value="-1" onclick="toggle(this, {{question.id}})"
+				{% if question in downvote_question %} class="selected" {% endif %}  >▼</button>
+			{{ question.downvotes }}
+		</div>
+	</h2>
+	<div class="blockRow">
+	{% for category in question.category_set.all %}
+		<div class="category">
+			<h3>{{ category.text }}
+				<div class="buttons">
+					{{ category.upvotes }}
+					<button id="Y{{ category.id }}" value="1" onclick="toggle(this, {{category.id}})" 
+					{% if category in upvote_category %} class="selected" {% endif %} >▲</button>
+					<button id="N{{ category.id }}" value="-1" onclick="toggle(this, {{category.id}})"
+					{% if category in downvote_category %} class="selected" {% endif %}  >▼</button>
+					{{ category.downvotes }}
+				</div>
+			</h3>
+			<div class="comments" id="comments">
+			{% for comment in category.comment_set.all %}
+				<div class="comment">
+					<div class="buttons">
+						{{ comment.upvotes }}
+						<button name="up" id="Y{{ comment.id }}" value="1" onclick="toggle(this, {{comment.id}})"
+						{% if comment in upvote_comment %} class="selected" {% endif %}  >▲</button>
+					</div>
+					<p>	{{ comment.text }} </p>
+				</div>
+			{% endfor %}
+			</div>
+			<div class=input>
+				<input size="15" maxlength="150" type="text" id="comment{{ category.id }}"
+				onKeyDown="if(event.keyCode==13) comment(this, {{category.id}});" >
+				<button class="submit" onclick="comment(this, {{category.id}})">➤</button>
+			</div>
+		</div>
+	{% endfor %}
+	</div>
+</div>
+{% endfor %}
+</div>
+{% else %}
+	<p>No questions available</p>
+{% endif %}

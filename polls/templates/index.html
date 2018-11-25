@@ -13,15 +13,16 @@
 	
   </head>
 
-<body>
+<body class="main">
 
-<div class="block title purple">
+<div class="block purple">
 	<h1>What do YOU think about Security Questions?
-	<span style="float:right"> PROFILE # {{ TODO }} </span></h1>
-	<h3>Which ones are good? &nbsp;&nbsp; What makes some of them bad? &nbsp;&nbsp; We need your feedback.</h3>
-	<h3>There isn't a diverse group of people developing security questions, so not all their limitations are being spoken for. This is an attempt to get feedback from a more representative audience - you.
-	<br><i>Don't answer the questions,</i> comment on what makes them good or bad.
-	</h3>
+		<span style="float:right"> PROFILE # {{ TODO }} </span>
+	</h1>
+	<p>Which ones are good? &nbsp;&nbsp; What makes some of them bad? &nbsp;&nbsp; We need your feedback.</p>
+	<p>There isn't a diverse group of people developing security questions, so not all their limitations are being spoken for. 
+	This is an attempt to get feedback from a more representative audience - you.</p>
+	<p><i>Don't answer the questions,</i> comment on what makes them good or bad.</p>
 </div>
 
 
@@ -30,11 +31,10 @@
 <!--DETAIL-->
 
 
-<div class="block input purple">
+<div class="input block purple">
 	<h2>Add a new question:	</h2>
 	<input maxlength="100" type="text" id="addQuestion" onKeyDown="if(event.keyCode==13) question(this);" >
->
-	<button class="submit" onclick="question(this)">➤</button>
+	<button onclick="question(this)">➤</button>
 </div>
 </body>
 
