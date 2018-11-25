@@ -130,7 +130,7 @@ def login(request):
 
 	# Get User
 	try:
-		users_id = request.POST.get('userNumnum')
+		users_id = request.POST.get('userInt')
 		user = User.objects.get(userNum = int(users_id))
 	# Create User
 	except:
