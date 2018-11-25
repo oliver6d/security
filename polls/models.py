@@ -27,7 +27,7 @@ class Other(models.Model):
 
 
 class User(models.Model):
-	userNum = models.IntegerField(primary_key=True)
+	userNum = models.IntegerField(unique=True)
 	userVotes = models.ManyToManyField(Votable, through='Vote')
 
 	userAge = models.IntegerField(default=0)
