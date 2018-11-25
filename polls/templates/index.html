@@ -16,10 +16,10 @@
 <body>
 
 <div class="block title purple">
-	<h1>Security Questions for Everyone</h1>
-	<h3>
-	One of the greatest weaknesses of security questions is their inability to span the cultural divide.  <br>Taken in other contexts, many security questions could be less ineffective and less secure. <br>
-	<b>Give your personal feedback on security questions, contribute as much as you feel comfortable</b>
+	<h1>What do YOU think about Security Questions?
+	<span style="float:right"> PROFILE # {{ TODO }} </span></h1>
+	<h3>Which ones are good? &nbsp;&nbsp; What makes some of them bad? &nbsp;&nbsp; We need your feedback.</h3>
+	<h3>There isn't a diverse group of people developing security questions, so not all their limitations are being spoken for.<br> This is an attempt to get feedback from a more representative audience - you.
 	</h3>
 </div>
 
@@ -31,7 +31,8 @@
 
 <div class="block input purple">
 	<h2>Add a new question:	</h2>
-	<input maxlength="100" type="text" id="addQuestion">
+	<input maxlength="100" type="text" id="addQuestion" onKeyDown="if(event.keyCode==13) question(this);" >
+>
 	<button class="submit" onclick="question(this)">➤</button>
 </div>
 </body>

@@ -9,12 +9,14 @@
 <div class="block purple diversity">
 	<div>
 		<h1>What makes you unique?
-			<span style="float:right"> PROFILE # {{ form.userID.value }} </span>
+			<span style="float:right"> PROFILE # {{ form.userNum.value }} </span>
 		</h1>
 	</div>
 	<div class="blockRow diversity">
 		<div class="info">
-			<h3> To design security questions that work for everyone, we need diverse feedback </h3>
+			<h3> Each field is <b>optional</b>
+				<br> Input will be used to measure response diversity,
+			so please answer <b>honestly</b> </h3>
 		</div>
 		<div class="info form blockRow">
 			{% for field in form %}

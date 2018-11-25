@@ -43,7 +43,8 @@
 			{% endfor %}
 			</div>
 			<div class=input>
-				<input size="15" maxlength="150" type="text" id="comment{{ category.id }}">
+				<input size="15" maxlength="150" type="text" id="comment{{ category.id }}"
+				onKeyDown="if(event.keyCode==13) comment(this, {{category.id}});" >
 				<button class="submit" onclick="comment(this, {{category.id}})">➤</button>
 			</div>
 		</div>

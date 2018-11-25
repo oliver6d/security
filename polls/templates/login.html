@@ -1,17 +1,17 @@
 <html>
-  <head>
-  	<title>Security Questions for Everyone </title>
-  	{% load static %}
+	<head>
+		<title>Security Questions for Everyone </title>
+		{% load static %}
 	<link rel="stylesheet" type="text/css" href='{% static "fastselect.css" %}'></script>
-  	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-    <link href="https://fonts.googleapis.com/css?family=Handlee|Roboto:300,400,500,700" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+		<link href="https://fonts.googleapis.com/css?family=Handlee|Roboto:300,400,500,700" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 	<script src='{% static "script.js" %}'></script>
 	<script src='{% static "fastselect.standalone.js" %}'></script>
-  	<script type="text/javascript"> window.CSRF_TOKEN = "{{ csrf_token }}"; </script>
+		<script type="text/javascript"> window.CSRF_TOKEN = "{{ csrf_token }}"; </script>
 	
-  </head>
+	</head>
 
 <body>
 
@@ -20,15 +20,14 @@
 {% block logincolor %}
 <div class="block purple diversity">
 {% endblock %}
-    <h1>Load Profile</h1>
+		<h1>Load Profile</h1>
 	<div class="blockRow diversity">
-        <div class="info">
-    	    <h3> If you have a profile number, enter it.  Otherwise, we will create one for you.</h3>
-        </div>
-        <div class="info form blockRow">
-		    <input name="userInt" type="number" class="cpyElement fstElement" placeholder="Profile #">
-		    <input type="submit" value="OK" class="cpyELement fstElement submit">
-		</div>
+		<div>
+				<h3><b>Returning Users:</b> enter profile # to return to last session</h3><br>
+				<h3><b>First Time:</b> we'll create one for you</h3>
+			</div>
+				<input name="userInt" type="number" class="cpyElement fstElement" placeholder="Profile #">
+				<input type="submit" value="Continue" class="cpyELement fstElement submit">
 	</div>
 </div>
 </form>
