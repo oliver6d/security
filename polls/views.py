@@ -18,7 +18,7 @@ def test(request):
 
 
 def detail(request, id):
-	user = User.objects.get(userID = id)
+	user = User.objects.get(userNum = id)
 
 	questions = Question.objects.order_by('-text')
 	context =  {
@@ -42,7 +42,7 @@ def detail(request, id):
 
 def index(request, id):
 	try:
-		user = User.objects.get(userID = id)
+		user = User.objects.get(userNum = id)
 	except ObjectDoesNotExist:
 		return HttpResponseRedirect('/')
 
@@ -62,7 +62,7 @@ def index(request, id):
 
 def comment(request, id):
 	try:
-		user = User.objects.get(userID = id)
+		user = User.objects.get(userNum = id)
 	except ObjectDoesNotExist:
 		return HttpResponseRedirect('/')
 
@@ -84,7 +84,7 @@ def comment(request, id):
 
 def question(request, id):
 	try:
-		user = User.objects.get(userID = id)
+		user = User.objects.get(userNum = id)
 	except ObjectDoesNotExist:
 		return HttpResponseRedirect('/')
 
@@ -104,7 +104,7 @@ def question(request, id):
 
 def vote(request, id):
 	try:
-		user = User.objects.get(userID = id)
+		user = User.objects.get(userNum = id)
 	except ObjectDoesNotExist:
 		return HttpResponseRedirect('/')
 
@@ -130,14 +130,14 @@ def login(request):
 
 	# Get User
 	try:
-		users_id = request.POST.get('useridnum')
-		user = User.objects.get(userID = int(users_id))
+		users_id = request.POST.get('userNumnum')
+		user = User.objects.get(userNum = int(users_id))
 	# Create User
 	except:
 		users_id = random.getrandbits(32)
 		#TODO: check that this user does not already exist
 		#TODO: don't create user unles form is submitted
-		user = User.objects.create(userID = users_id)
+		user = User.objects.create(userNum = users_id)
 
 	return HttpResponseRedirect('form/'+str(users_id)+'/')
 
@@ -145,7 +145,7 @@ def login(request):
 
 def form(request, id):
 	try:
-		user = User.objects.get(userID = id)
+		user = User.objects.get(userNum = id)
 	except ObjectDoesNotExist:
 		return HttpResponseRedirect('/')
 	
@@ -161,7 +161,7 @@ def form(request, id):
 		form.save()
 	
 	# try:
-	# 	user = User.objects.get(userID = request.POST.get('userID'))
+	# 	user = User.objects.get(userNum = request.POST.get('userNum'))
 	# except ObjectDoesNotExist:
 	# 	return HttpResponseRedirect('/')
 

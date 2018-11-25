@@ -21,7 +21,7 @@ EDUCATIONS = (
     )
 
 class UserForm(forms.ModelForm):
-    userID = forms.IntegerField(required=True,
+    userNum = forms.IntegerField(required=True,
     	widget=forms.HiddenInput(),
     	)
     userAge = forms.IntegerField(required=False,
@@ -61,4 +61,4 @@ class UserForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('userID', 'userAge', 'userGender', 'userEducation', 'userIncome', 'userLanguage', 'userCountry', 'userOther')
+        fields = ('userNum', 'userAge', 'userGender', 'userEducation', 'userIncome', 'userLanguage', 'userCountry', 'userOther')
