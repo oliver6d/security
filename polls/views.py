@@ -129,15 +129,15 @@ def login(request):
 		return render(request, 'login.html')
 
 	# Get User
-	try:
-		users_id = request.POST.get('userInt')
-		user = User.objects.get(userNum = int(users_id))
-	# Create User
-	except:
-		users_id = random.getrandbits(32)
-		#TODO: check that this user does not already exist
-		#TODO: don't create user unles form is submitted
-		user = User.objects.create(userNum = users_id)
+	# try:
+	# 	users_id = request.POST.get('userInt')
+	# 	user = User.objects.get(userNum = users_id)
+	# # Create User
+	# except:
+	users_id = random.getrandbits(32)
+	#TODO: check that this user does not already exist
+	#TODO: don't create user unles form is submitted
+	user = User.objects.create(userNum = users_id)
 
 	return HttpResponseRedirect('form/'+str(users_id)+'/')
 

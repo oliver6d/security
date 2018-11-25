@@ -36,7 +36,7 @@ class User(models.Model):
 	userIncome = models.CharField(max_length=3, default='')
 
 	userLanguage = models.ManyToManyField(Language)
-	#userCountry = models.ManyToManyField(Country)
+	userCountry = models.ManyToManyField(Country)
 	userOther = models.ManyToManyField(Other)
 	
 
