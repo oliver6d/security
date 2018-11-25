@@ -629,7 +629,7 @@
         setupSingleElement: function(onDone) {
 
             var initialOptions = this.processInitialOptions(),
-                toggleBtnText = this.options.placeholder;
+                toggleBtnText = initialOptions && initialOptions.length ? initialOptions[0].text : this.options.placeholder;
 
             this.$el.addClass(this.options.multipleModeClass);
             this.$controls = $('<div>').addClass(this.options.controlsClass);

@@ -13,19 +13,17 @@ body {
 h2,h3,p{
 	margin: 0px;
 }
+h1{
+	font-size: 1.5em;
+	font-family: 'Handlee', cursive;
+    font-size: 1.8em;
+    font-weight: 600;
+	margin: 10px 15px;
+}
 h2{
 	font-size:1.2em;
 	margin: 10px 15px;
 	font-weight: 400;
-}
-.diversity h2{
-	font-family: 'Handlee', cursive;
-    font-size: 1.8em;
-    font-weight: 600;
-
-}
-.title h2{
-	font-size: 1.5em;
 }
 h3{
 	font-size:1.1em;
@@ -62,7 +60,7 @@ div.block{
 	padding: 5px;
 	border-radius: 10px;
 }
-div.block.diversity{
+div.purple{
 	background-color: #6180DD;
 	color: white;
 }
@@ -161,6 +159,10 @@ button{
 	border:none;
 	padding:0em;
 	margin: -0.2em;
+	background-color: transparent;
+}
+.purple button{
+	color: white;
 	background-color: transparent;
 }
 button.selected[value="1"]{

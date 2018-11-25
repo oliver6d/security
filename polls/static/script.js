@@ -13,7 +13,13 @@ function load() {
 };
 
 function aboutUser(input) {
-    var text = document.getElementById("addQuestion").value;
+    var text = document.getElementById("age").value;
+    var text = document.getElementById("gender").value;
+    var text = document.getElementById("education").value;
+    var text = document.getElementById("income").value;
+    var text = document.getElementById("language").value;
+    var text = document.getElementById("nationality").value;
+    var text = document.getElementById("other").value;
 
     $.ajax({
         type:"POST",
@@ -56,6 +62,7 @@ function toggle(button, id) {
 
 function comment(button, id) {
 	var text = document.getElementById("comment"+id).value;
+    if (text.length < 5) return;
 
 	$.ajax({
 		type:"POST",
@@ -68,6 +75,7 @@ function comment(button, id) {
         dataType: 'json',
         success: function (data) {
             $('#detail').replaceWith(data.detail_html);
+            box.value = "";
         }
       });
 	return;	
@@ -75,7 +83,9 @@ function comment(button, id) {
 
 
 function question(button) {
-	var text = document.getElementById("addQuestion").value;
+    var box = document.getElementById("addQuestion");
+	var text = box.value;
+    if (text.length < 5) return;
 
 	$.ajax({
 		type:"POST",
@@ -87,6 +97,7 @@ function question(button) {
         dataType: 'json',
         success: function (data) {
             $('#detail').replaceWith(data.detail_html);
+            box.value = "";
         }
       });
 	return;	

@@ -5,17 +5,13 @@ app_name = 'polls'
 
 # will follow first matching pattern
 urlpatterns = [
-    # ex: /polls/
-    path('', views.index, name='index'),
-    path('test/', views.test, name='test'),
-    path('detail/', views.detail, name='detail'),
-    # ex: /polls/5/results/
-    #path('<int:pk>/results/', views.ResultsView.as_view(), name='results'),
-    # ex: /polls/vote/
-    path('vote/', views.vote, name='vote'),
-    # ex: /polls/comment/
-    path('comment/', views.comment, name='comment'),
-    # ex: /polls/question/
-    path('question/', views.question, name='question'),
+	path('', views.login, name='login'),
+	path('form/<int:id>/', views.form, name='form'),
+	# to question page
+	path('poll/<int:id>/', views.index, name='index'),
+	# page section refreshed
+	path('poll/<int:id>/vote/', views.vote, name='vote'),
+	path('poll/<int:id>/comment/', views.comment, name='comment'),
+	path('poll/<int:id>/question/', views.question, name='question'),
 
 ]

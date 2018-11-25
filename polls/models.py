@@ -3,6 +3,7 @@ import datetime
 from django.utils import timezone
 from django.db import models
 
+
 class Votable(models.Model):
 	text = models.CharField(max_length=200, default='')
 	def upvotes(self):
@@ -12,23 +13,35 @@ class Votable(models.Model):
 	def __str__(self):
 		return self.text
 
+class Language(models.Model):
+	languageText = models.CharField(max_length=20, default='')
+	def __str__(self):	return str(self.languageText)
+
+class Country(models.Model):
+	countryText = models.CharField(max_length=30, default='')
+	def __str__(self):	return str(self.countryText)
+
+class Other(models.Model):
+	otherText = models.CharField(max_length=30, default='')
+	def __str__(self):	return str(self.otherText)
+
+
 class User(models.Model):
-	host = models.CharField(max_length=40, primary_key=True)
+	userID = models.IntegerField(primary_key=True)
 	userVotes = models.ManyToManyField(Votable, through='Vote')
 
-	age = models.IntegerField(default=0)
-	gender = models.CharField(max_length=200, default='')
-	education = models.CharField(max_length=200, default='')
-	income = models.CharField(max_length=200, default='')
-	language = models.CharField(max_length=200, default='')
-	country = models.CharField(max_length=200, default='')
-	other = models.CharField(max_length=200, default='')
-	def __str__(self):
-		return str(self.host)
+	userAge = models.IntegerField(default=0)
+	userGender = models.CharField(max_length=3, default='')
+	userEducation = models.CharField(max_length=3, default='')
+	userIncome = models.CharField(max_length=3, default='')
+
+	userLanguage = models.ManyToManyField(Language)
+	userCountry = models.ManyToManyField(Country)
+	userOther = models.ManyToManyField(Other)
+	
 
 class Question(Votable):
-	questionUser = models.ForeignKey(User, on_delete=models.CASCADE)
-	
+	questionUser = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
 class Category(Votable):
 	categoryQuestion = models.ForeignKey(Question, on_delete=models.CASCADE)
@@ -38,7 +51,7 @@ class Category(Votable):
 class Comment(Votable):
 	commentQuestion = models.ForeignKey(Question, on_delete=models.CASCADE)
 	commentCategory = models.ForeignKey(Category, on_delete=models.CASCADE)
-	commentUser = models.ForeignKey(User, on_delete=models.CASCADE)
+	commentUser = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 	#automatically vote
 
 class Vote(models.Model):
@@ -47,3 +60,4 @@ class Vote(models.Model):
 	vote = models.IntegerField(default=0)
 	def __str__(self):
 		return str(self.votable)
+

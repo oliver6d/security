@@ -2,28 +2,25 @@ from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
+from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse
 from django.template import loader
 from django.views import generic
 from django.utils import timezone
+import random
 
+from polls.forms import *
 from polls.models import *
-
-# def view(request):
-#     question_list = Question.objects.order_by('-text')[:5]
-#     context = {'question_list': question_list}
-#     return render(request, 'polls/detail.html', context)
 
 def test(request):
 	return render(request, 'test.html')
 
-	questions = Question.objects.order_by('-text')[:5]
 
-	user_id = request.get_host()
-	user,created = User.objects.get_or_create(host=user_id)
 
-	#upvotes = Votable.objects.filter(vote__user = user, vote__vote = 1)
-	#downvotes = Votable.objects.filter(vote__user = user, vote__vote = -1)
+def detail(request, id):
+	user = User.objects.get(userID = id)
+
+	questions = Question.objects.order_by('-text')
 	context =  {
 		'question_list': questions, 
 		'upvote_question': Question.objects.filter(vote__user = user, vote__vote = 1),
@@ -33,17 +30,24 @@ def test(request):
 		'upvote_comment': Comment.objects.filter(vote__user = user, vote__vote = 1),
 		'downvote_comment': Comment.objects.filter(vote__user = user, vote__vote = -1),
 	}
-	return render(request, 'test.html', context)
+	html = loader.render_to_string(
+		'detail.html',
+		context
+	)
+	output_data = {
+		'detail_html': html,
+	}
+	return JsonResponse(output_data)
 
 
-def index(request):
-	questions = Question.objects.order_by('-text')[:5]
+def index(request, id):
+	try:
+		user = User.objects.get(userID = id)
+	except ObjectDoesNotExist:
+		return HttpResponseRedirect('/')
 
-	user_id = request.get_host()
-	user,created = User.objects.get_or_create(host=user_id)
+	questions = Question.objects.order_by('-text')
 
-	#upvotes = Votable.objects.filter(vote__user = user, vote__vote = 1)
-	#downvotes = Votable.objects.filter(vote__user = user, vote__vote = -1)
 	context =  {
 		'question_list': questions, 
 		'upvote_question': Question.objects.filter(vote__user = user, vote__vote = 1),
@@ -56,24 +60,17 @@ def index(request):
 	return render(request, 'index.html', context)
 
 
-def detail(request):
-	questions = Question.objects.order_by('-text')[:5]
-	html = loader.render_to_string(
-		'detail.html',
-		{'question_list': questions}
-	)
-	output_data = {
-		'detail_html': html,
-	}
-	return JsonResponse(output_data)
+def comment(request, id):
+	try:
+		user = User.objects.get(userID = id)
+	except ObjectDoesNotExist:
+		return HttpResponseRedirect('/')
 
-
-def comment(request):
-	user_id = request.get_host()
-	category_id = request.POST.get('id')
 	comment = request.POST.get('comment')
+	if(len(comment) < 5):
+		return
 
-	user, created = User.objects.get_or_create(pk=user_id)
+	category_id = request.POST.get('id')
 	category = get_object_or_404(Category, pk=category_id)
 
 	c = Comment(text=comment, 
@@ -82,14 +79,18 @@ def comment(request):
 		commentUser = user)
 	c.save()
 
-	return detail(request)
+	return detail(request, id)
 
 
-def question(request):
-	user_id = request.get_host()
+def question(request, id):
+	try:
+		user = User.objects.get(userID = id)
+	except ObjectDoesNotExist:
+		return HttpResponseRedirect('/')
+
 	question = request.POST.get('question')
-
-	user,created = User.objects.get_or_create(pk=user_id)
+	if(len(question) < 5):
+		return
 
 	q = Question(text=question, questionUser = user)
 	q.save()
@@ -98,15 +99,17 @@ def question(request):
 	Category(categoryQuestion=q, text="Relevant").save()
 	Category(categoryQuestion=q, text="Reproducible").save()
 
-	return detail(request)
+	return detail(request, id)
 
 
-def vote(request):
-	user_id = request.get_host()
+def vote(request, id):
+	try:
+		user = User.objects.get(userID = id)
+	except ObjectDoesNotExist:
+		return HttpResponseRedirect('/')
+
 	votable_id = request.POST.get('id')
 	value = request.POST.get('value')
-
-	user,created = User.objects.get_or_create(host=user_id)
 	votable = get_object_or_404(Votable, pk=votable_id)
 
 	v, created = Vote.objects.get_or_create(votable=votable, user=user)
@@ -118,3 +121,52 @@ def vote(request):
 		'value': v.vote,
 	}
 	return JsonResponse(data)
+
+
+def login(request):
+
+	if request.method == 'GET':
+		return render(request, 'login.html')
+
+	try:
+		user_id = request.GET.get('useridnum')
+		user = User.objects.get(userID = user_id)
+
+	# Create User
+	except ObjectDoesNotExist:
+		user_id = random.getrandbits(32)
+		#TODO: check that this user does not already exist
+		#TODO: don't create user unles form is submitted
+		user = User.objects.create(userID = user_id)
+
+	return HttpResponseRedirect('form/'+str(user_id)+'/')
+
+	#TODO: every time refresh, creates a new user and resubmits post
+
+def form(request, id):
+	try:
+		user = User.objects.get(userID = id)
+	except ObjectDoesNotExist:
+		return HttpResponseRedirect('/')
+	
+	if request.method == 'GET':
+		context = {
+			'form': UserForm(instance=user),
+		}
+		return render(request, 'form.html', context)
+
+	# Create a form instance and populate it with data from the request (binding):
+	form = UserForm(request.POST, instance=user)
+	if form.is_valid():
+		form.save()
+	
+	# try:
+	# 	user = User.objects.get(userID = request.POST.get('userID'))
+	# except ObjectDoesNotExist:
+	# 	return HttpResponseRedirect('/')
+
+	#TODO: check fields, save user or update user
+
+	return HttpResponseRedirect('/polls/poll/'+str(id)+'/')
+	# maybe dont save user until submit right here
+	#return render(request, 'form.html', context)

@@ -15,25 +15,27 @@
 
 <body>
 
-<div class="block title purple">
-	<h1>Security Questions for Everyone</h1>
-	<h3>
-	One of the greatest weaknesses of security questions is their inability to span the cultural divide.  <br>Taken in other contexts, many security questions could be less ineffective and less secure. <br>
-	<b>Give your personal feedback on security questions, contribute as much as you feel comfortable</b>
-	</h3>
+<form action="" method="POST">
+{% csrf_token %}
+{% block logincolor %}
+<div class="block purple diversity">
+{% endblock %}
+    <h1>Login</h1>
+	<div class="blockRow diversity">
+        <div class="info">
+    	    <h3> If you have a profile number, enter it.  Otherwise, we will create one for you.</h3>
+        </div>
+        <div class="info form blockRow">
+		    <input name="id" type="number" class="cpyElement fstElement" placeholder="Profile #">
+		    <input type="submit" value="OK" class="cpyELement fstElement submit">
+		</div>
+	</div>
 </div>
+</form>
 
 
-<!--DETAIL-->
-<div>{% include 'detail.html' %}</div>
-<!--DETAIL-->
+{% block content %}
+{% endblock %}
 
-
-<div class="block input purple">
-	<h2>Add a new question:	</h2>
-	<input maxlength="100" type="text" id="addQuestion">
-	<button class="submit" onclick="question(this)">➤</button>
-</div>
 </body>
-
 </html>
