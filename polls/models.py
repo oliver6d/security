@@ -26,7 +26,7 @@ class Other(models.Model):
 	def __str__(self):	return str(self.otherText)
 
 
-class User(models.Model):
+class Profile(models.Model):
 	userNum = models.IntegerField(unique=True)
 	userVotes = models.ManyToManyField(Votable, through='Vote')
 
@@ -41,7 +41,7 @@ class User(models.Model):
 	
 
 class Question(Votable):
-	questionUser = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+	questionUser = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True)
 
 class Category(Votable):
 	categoryQuestion = models.ForeignKey(Question, on_delete=models.CASCADE)
@@ -51,12 +51,12 @@ class Category(Votable):
 class Comment(Votable):
 	commentQuestion = models.ForeignKey(Question, on_delete=models.CASCADE)
 	commentCategory = models.ForeignKey(Category, on_delete=models.CASCADE)
-	commentUser = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+	commentUser = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True)
 	#automatically vote
 
 class Vote(models.Model):
 	votable = models.ForeignKey(Votable, on_delete=models.CASCADE)
-	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	user = models.ForeignKey(Profile, on_delete=models.CASCADE)
 	vote = models.IntegerField(default=0)
 	def __str__(self):
 		return str(self.votable)

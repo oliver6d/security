@@ -20,7 +20,7 @@ EDUCATIONS = (
     ("deg", "4 year degree"),
     )
 
-class UserForm(forms.ModelForm):
+class ProfileForm(forms.ModelForm):
     userNum = forms.IntegerField(required=True,
     	widget=forms.HiddenInput(),
     	)
@@ -60,5 +60,5 @@ class UserForm(forms.ModelForm):
 
 
     class Meta:
-        model = User
+        model = Profile
         fields = ('userNum', 'userAge', 'userGender', 'userEducation', 'userIncome', 'userLanguage', 'userCountry', 'userOther')
