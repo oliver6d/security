@@ -134,7 +134,7 @@ def login(request):
 	# 	user = User.objects.get(userNum = users_id)
 	# # Create User
 	# except:
-	users_id = random.getrandbits(29)
+	users_id = random.getrandbits(30)
 	#TODO: check that this user does not already exist
 	#TODO: don't create user unles form is submitted
 	user = Profile.objects.create(userNum = users_id)
