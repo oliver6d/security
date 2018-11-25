@@ -21,7 +21,7 @@ EDUCATIONS = (
     )
 
 class UserForm(forms.ModelForm):
-    userID = forms.IntegerField(max_length=40, required=True,
+    userID = forms.IntegerField(required=True,
     	widget=forms.HiddenInput(),
     	)
     userAge = forms.IntegerField(required=False,
