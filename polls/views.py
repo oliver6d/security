@@ -128,10 +128,10 @@ def login(request):
 	if request.method == 'GET':
 		return render(request, 'login.html')
 
+	# Get User
 	try:
-		user_id = request.GET.get('useridnum')
+		user_id = request.POST.get('useridnum')
 		user = User.objects.get(userID = user_id)
-
 	# Create User
 	except ObjectDoesNotExist:
 		user_id = random.getrandbits(32)
