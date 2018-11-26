@@ -9,7 +9,7 @@ body {
 	font-family: 'Roboto', sans-serif;
 	font-weight:400;
     font-size: 1em;
-    margin: 2.5%;
+    margin: 1em;
 }
 body.main {
 	width: 70%;
@@ -22,7 +22,7 @@ div.requirements{
     width: 20%;
     position: fixed;
     top: 3em;
-    right: 2.5%;
+    right: 1em;
     overflow-x: hidden;
 }
 
@@ -37,6 +37,7 @@ h1{
 }
 /* questions */
 h2{
+	flex-shrink: 1;
 	font-size: 1.2em;
 	font-weight: 300;
 }
@@ -50,6 +51,7 @@ div.block{
 	margin: 1em;
 	padding: 1.2em 1.5em;
 	border-radius: 1em;
+	display: block;
 }
 div.purple{
 	background-color: #6180DD;
@@ -62,23 +64,29 @@ div.row {
 	align-items: center;
     flex-wrap: wrap;
 }
+div.row.nowrap{
+	flex-wrap: nowrap;
+}
 div.blockinfo{
 	width: 25%;
+	display: inline-block;
 }
 div.blockbody{
 	width: 70%;
-	display:inline-block;
+	display: inline-block;
 }
 div.left {
+	display: inline-block;
 	float: left;
 }
 div.right {
+	display: inline-block;
 	float: right;
 }
 div.comments{
-	padding: 0.5em 1.8em;
-	margin:4px;
-	min-height: 8px;
+	padding: 0.5em;
+	margin:0.1em;
+	min-height: 1em;
 }
 
 div.input{
@@ -88,9 +96,10 @@ div.input{
 }
 div.input input{
 	flex: 1 1;
+	font-size: 0.8em;
 	margin: .1em 1em .1em;
 	padding: 0.3em;
-	max-width: 600px;
+	max-width: 30em;
 }
 div.input h2{
 	margin-top: .2em;
@@ -141,4 +150,25 @@ button.selected[value="-1"]{
 .select input{
 	min-width: 4em;
 	max-width: 9em;
+}
+
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    
+	body, body.main {
+		width: 100%;
+		font-size: 1.5em;
+		margin: 0;
+	}
+	div.requirements{
+		display: none;
+	}
+	div.row {
+		display: contents;
+	}
+	div.blockinfo, div.blockbody{
+		display: block;
+		width: 100%;
+	}
 }

@@ -67,7 +67,7 @@ def comment(request, id):
 		return HttpResponseRedirect('/')
 
 	comment = request.POST.get('comment')
-	if(len(comment) < 5):
+	if(len(comment) < 3):
 		return
 
 	question_id = request.POST.get('id')
@@ -77,6 +77,21 @@ def comment(request, id):
 		commentQuestion = question,
 		commentUser = user)
 	c.save()
+
+	return detail(request, id)
+
+def delete(request, id):
+	try:
+		user = Profile.objects.get(userNum = id)
+	except ObjectDoesNotExist:
+		return HttpResponseRedirect('/')
+
+	comment_id = request.POST.get('comment')
+	try:
+		c = Comment.objects.get(pk = comment_id)
+		c.delete()
+	except:
+		pass
 
 	return detail(request, id)
 

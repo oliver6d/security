@@ -14,25 +14,27 @@
   </head>
 <body class="main">
 
-<div class="block purple">
-	<h1>What do YOU think of these Security Questions?
-		<span style="float:right"> PROFILE # {{ user_num }} </span>
-	</h1>
-	<h2><i>Which ones are good? &nbsp;&nbsp; What makes some of them bad?</i></h2>
-	<br>
-	<h2><b>Don't answer the security questions,</b> comment and vote on as many as you like</h2>
+<h2><div class="right"> PROFILE # {{ user_num }} </div></h2>
+
+<div class="main">
+	<div class="block purple">
+		<h1>What do YOU think of these Security Questions?</h1>
+		<h2><i>Which ones are good? &nbsp;&nbsp; What makes some of them bad?</i></h2>
+		<br>
+		<h2><b>Don't answer the security questions,</b> comment and vote on as many as you like</h2>
+	</div>
+
+	<div>{% include 'detail.html' %}</div>
+
+	<div class="input block purple">
+		<h2>Add new question:	</h2>
+		<input maxlength="100" type="text" id="addQuestion" onKeyDown="if(event.keyCode==13) question(this);" 
+			placeholder="enter a question we missed or your own">
+		<button onclick="question(this)">➤</button>
+	</div>
 </div>
 
-<div>{% include 'detail.html' %}</div>
-
-<div class="input block purple">
-	<h2>Add a new question:	</h2>
-	<input maxlength="100" type="text" id="addQuestion" onKeyDown="if(event.keyCode==13) question(this);" 
-		placeholder="enter a question we missed or your own">
-	<button onclick="question(this)">➤</button>
-</div>
-
-</body>
 <div class="requirements block">{% include 'requirements.html' %}</div>
 
+</body>
 </html>
