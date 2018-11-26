@@ -2,18 +2,21 @@ from django import forms
 from polls.models import *
 	
 INCOMES = (
-    ("LOW", "Low"),
-    ("MID", "Middle"),
-    ("HIG", "High"),
+    ("-", "Select Income"),
+    ("LOW", "< 30,000"),
+    ("MID", "< 80,000"),
+    ("HIG", "> 80,000"),
     )
 
 GENDERS = (
+    ("-", "Select Gender"),
     ("M", "Male"),
     ("F", "Female"),
     ("O", "Other"),
     )
 
 EDUCATIONS = (
+    ("-", "Select Education"),
     ("pri", "Primary"),
     ("sec", "Secondary"),
     ("add", "Post Secondary"),
@@ -42,22 +45,28 @@ class ProfileForm(forms.ModelForm):
     userLanguage = forms.ModelMultipleChoiceField(
     	required=False,
     	queryset=Language.objects.all(),
-	    widget=forms.SelectMultiple(attrs={'placeholder': 'Language'}),
+	    widget=forms.SelectMultiple(attrs={'placeholder': 'Language(s)'}),
     	)
     userCountry = forms.ModelMultipleChoiceField(
     	required=False,
     	queryset=Country.objects.all(),
-	    widget=forms.SelectMultiple(attrs={'placeholder': 'Country'}),
+	    widget=forms.SelectMultiple(attrs={'placeholder': 'Country(s)'}),
     	)
     userOther = forms.ModelMultipleChoiceField(
     	required=False,
     	queryset=Other.objects.all(),
-	    widget=forms.SelectMultiple(attrs={'placeholder': 'Ethnicity, Disability, Religion, etc'}),
+	    widget=forms.SelectMultiple(attrs={'placeholder': 'Ethnicity, Faith, Disability, etc'}),
     	)
 
     #Countries = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
      #                                    choices=OPTIONS)
 
+
+    def clean_user_language(self):
+        cleaned = self.cleaned_data['user_language']
+        
+        # Error: some individual values weren't valid...
+        raise forms.ValidationError('some message')
 
     class Meta:
         model = Profile

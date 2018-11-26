@@ -8,7 +8,7 @@
 {% for question in question_list %}
 <div class="block">
 	<h2>{{ question.text }}
-		<div class="buttons">
+		<div class="buttons right">
 			{{ question.upvotes }}
 			<button id="Y{{ question.id }}" value="1" onclick="toggle(this, {{question.id}})" 
 				{% if question in upvote_question %} class="selected" {% endif %} >▲</button>

@@ -6,7 +6,8 @@ app_name = 'polls'
 # will follow first matching pattern
 urlpatterns = [
 	path('', views.login, name='login'),
-	path('form/<int:id>/', views.form, name='form'),
+	path('form/', views.form, name='form'),
+	path('example/<int:id>/', views.example, name='example'),
 	# to question page
 	path('poll/<int:id>/', views.index, name='index'),
 	# page section refreshed

@@ -1,0 +1,59 @@
+<html>
+  <head>
+  	<title>Security Questions for Everyone </title>
+  	{% load static %}
+	<link rel="stylesheet" type="text/css" href='{% static "fastselect.css" %}'></script>
+  	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Handlee|Roboto:300,400,500,700" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script src='{% static "script.js" %}'></script>
+	<script src='{% static "fastselect.standalone.js" %}'></script>
+  	<script type="text/javascript"> window.CSRF_TOKEN = "{{ csrf_token }}"; </script>
+	
+  </head>
+
+<body class="example">
+
+<div class="block purple">
+	<h1>Let's talk about security questions</h1>
+	<p>Some security questions are awful.  Some don't have memorable answers.
+		Some are easy for imposters to figure out - compromising your security.
+		<br><br>
+		The shortcomings of security questions will vary from person to person - yet the questions aren't selected by a diverse group of people.
+		This study is an attempt to get feedback from a diverse audience, representative of a larger population of users.
+		<br><br>
+		The following page will have a list of security questions.  For each security question, upvote if you think it's a good question and downvote if it isn't.  Upvote other users' reasons for it being bad, and add your own.
+		<br><br>
+		Don't think of this as a survey, think of it as a discussion.  You can learn about how other people feel, contribute as much as you like, and return later to add more.
+		<br><br>
+		<i><u>Don't answer the questions</u>, comment and vote what makes them good or bad</i>
+	</p>
+</div>
+
+
+<h1>Example Question</h1>
+<div class="block">
+	<h2> What is your mother's maiden name?
+		<div class="buttons right"> 1 <button>▲</button> <button>▼</button> 6 </div>
+	</h2>
+	<div class="comments">
+			<p>
+				<div class="buttons left">1<button>▲</button></div>
+				My mother's maiden name was really common, it could be guessed in a few tries
+			</p><p>
+				<div class="buttons left">8<button>▲</button></div>
+				That information is available in public records and on facebook
+			</p>
+	</div>
+	<div class=input>
+		<input size="15" type="text" value="My mother didn't change her name whe" >
+		<button>➤</button>
+	</div>
+</div>
+
+<form action="/polls/poll/{{id}}">
+    <input type="submit" value="Continue" />
+</form>
+
+</body>

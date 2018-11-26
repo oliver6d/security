@@ -15,6 +15,8 @@ from polls.models import *
 def test(request):
 	return render(request, 'test.html')
 
+def example(request, id):
+	return render(request, 'example.html', {'id':id})
 
 
 def detail(request, id):
@@ -47,6 +49,7 @@ def index(request, id):
 	questions = Question.objects.order_by('-text')
 
 	context =  {
+		'user_num':id,
 		'question_list': questions, 
 		'upvote_question': Question.objects.filter(vote__user = user, vote__vote = 1),
 		'downvote_question': Question.objects.filter(vote__user = user, vote__vote = -1),
@@ -54,6 +57,7 @@ def index(request, id):
 		'downvote_comment': Comment.objects.filter(vote__user = user, vote__vote = -1),
 	}
 	return render(request, 'index.html', context)
+
 
 
 def comment(request, id):
@@ -120,48 +124,49 @@ def vote(request, id):
 
 def login(request):
 
-	if request.method == 'GET':
-		return render(request, 'login.html')
-
-	# Get User
-	# try:
-	# 	users_id = request.POST.get('userInt')
-	# 	user = User.objects.get(userNum = users_id)
-	# # Create User
-	# except:
-	users_id = random.getrandbits(30)
-	#TODO: check that this user does not already exist
-	#TODO: don't create user unles form is submitted
-	user = Profile.objects.create(userNum = users_id)
-
-	return HttpResponseRedirect('form/'+str(users_id)+'/')
-
-	#TODO: every time refresh, creates a new user and resubmits post
-
-def form(request, id):
-	try:
-		user = Profile.objects.get(userNum = id)
-	except ObjectDoesNotExist:
-		return HttpResponseRedirect('/')
-	
+	# load page, return empty form
 	if request.method == 'GET':
 		context = {
-			'form': ProfileForm(instance=user),
+			'form': ProfileForm(),
 		}
-		return render(request, 'form.html', context)
+		return render(request, 'login.html', context)
 
-	# Create a form instance and populate it with data from the request (binding):
+	# submits load user, return filled form
+	else:
+		try:
+			user_id = request.POST.get('userInt')
+			user = Profile.objects.get(userNum = user_id)
+			context = {
+				'form': ProfileForm(instance=user),
+			}
+			return render(request, 'logedin.html', context)
+		except:
+			# This will clear profile info
+			context = {
+				'form': ProfileForm(),
+				'error': "Profile not found",
+			}
+			return render(request, 'login.html', context)
+
+
+def form(request):
+	form = ProfileForm(request.POST)
+	print(form)
+	print(request.POST)
+	# update existing profile
+	try:
+		id = form.userNum
+		user = Profile.objects.get(userNum = id)
+	# create new profile
+	except:
+		created = False
+		while (not created):
+			id = random.getrandbits(20)
+			user, created = Profile.objects.get_or_create(userNum = id)
+
 	form = ProfileForm(request.POST, instance=user)
 	if form.is_valid():
 		form.save()
-	
-	# try:
-	# 	user = Profile.objects.get(userNum = request.POST.get('userNum'))
-	# except ObjectDoesNotExist:
-	# 	return HttpResponseRedirect('/')
+	#TODO: check cleaning, add errors
 
-	#TODO: check fields, save user or update user
-
-	return HttpResponseRedirect('/polls/poll/'+str(id)+'/')
-	# maybe dont save user until submit right here
-	#return render(request, 'form.html', context)
+	return HttpResponseRedirect('/polls/example/'+str(id)+'/')

@@ -54,7 +54,6 @@ General styling
   position: relative;
   box-sizing: border-box;
   padding: 0.71429em 1.42857em 0.71429em 0.71429em;
-  min-width: 14.28571em;
   cursor: pointer; }
   .fstToggleBtn:after {
     position: absolute;
@@ -209,20 +208,18 @@ Multiple mode
   box-sizing: border-box;
   padding: 0.5em 0.5em 0em 0.5em;
   overflow: hidden;
-  width: 20em;
   cursor: text; }
 
 .fstMultipleMode .fstQueryInput {
   font-size: 1.4em;
   float: left;
-  padding: 0.28571em 0;
+  padding: 0.2em 0;
   margin: 0 0 0.35714em 0;
-  width: 2em;
 }
 
 .fstMultipleMode .fstQueryInputExpanded {
   float: none;
-  width: 100%;
+  min-width: 13em;
   padding: 0.28571em 0.35714em; }
 
 .fstMultipleMode .fstFakeInput {

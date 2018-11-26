@@ -17,22 +17,53 @@
 
 <form action="" method="POST">
 {% csrf_token %}
-{% block logincolor %}
-<div class="block purple">
-{% endblock %}
-		<h1>Load Profile</h1>
+<div class="block">
+	<h1>Load Profile</h1>
 	<div class="row">
-				<h2>If you are a returning user, enter your profile # <br>
-				otherwise, <b>click continue</b> to create a new profile</h2>
-				<input name="userInt" type="number" class="cpyElement fstElement" placeholder="Profile #">
-				<input type="submit" value="Continue" class="cpyELement fstElement">
+		<h2>If you happen to be a returning user, enter your profile # <br>
+		otherwise, create a new profile</h2>
+		<input name="userInt" type="number" class="cpyElement fstElement" placeholder="Profile #">
+		<input type="submit" value="Load" class="cpyELement fstElement">
 	</div>
+	<h2 style="text-align:right"> {{ error }} </h2>
 </div>
 </form>
 
 
-{% block content %}
-{% endblock %}
+<form action="form/" method="POST">
+{% csrf_token %}
+<div class="block purple form">
+	<div>
+		{% block title %}
+		<h1>Create Profile</h1>
+		{% endblock %}
+	</div>
+	<div class="row">
+		<div class="blockinfo">
+			<h2> Each field is <b>optional</b>
+				<br> Input will be used to measure response diversity, so please answer <b>honestly</b>
+			</h2>
+		</div>
+		<div class="blockbody">
+			<div class="row select">
+				{{ form.userAge }}
+				{{ form.userGender }}
+				{{ form.userEducation }}
+				{{ form.userIncome }}
+			</div>
+			<div class="row">
+				{{ form.userLanguage }}
+				{{ form.userCountry }}
+				{{ form.userOther }}
+			</div>
+			<button class="cpyElement fstElement right" onclick="question(this)">Continue</button>
+		</div>
+	</div>
+
+</div>
+</form>
+<script>  $('select').fastselect({userOptionAllowed:true});  </script>
+
 
 </body>
 </html>

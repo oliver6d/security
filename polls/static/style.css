@@ -9,12 +9,23 @@ body {
 	font-family: 'Roboto', sans-serif;
 	font-weight:400;
     font-size: 1em;
-    padding: 1em;
-	margin: auto;
+    margin: 2.5%;
 }
 body.main {
-	max-width: 900px;
+	width: 70%;
 }
+body.example{
+	max-width: 50em;
+	margin: auto;
+}
+div.requirements{
+    width: 20%;
+    position: fixed;
+    top: 3em;
+    right: 2.5%;
+    overflow-x: hidden;
+}
+
 h1,h2,h3,p{
 	margin: 0em;
 	padding: 0em;
@@ -31,14 +42,6 @@ h2{
 }
 p{
 	padding: 0.2em;
-}
-
-.cpyElement{
-	font-size:1.1em;
-	padding: 8px;
-	width: 8em;
-	bottom: .8em;
-	margin-bottom: 0px;
 }
 
 
@@ -59,20 +62,24 @@ div.row {
 	align-items: center;
     flex-wrap: wrap;
 }
-div.blockleft{
+div.blockinfo{
 	width: 25%;
 }
 div.blockbody{
 	width: 70%;
 	display:inline-block;
 }
+div.left {
+	float: left;
+}
+div.right {
+	float: right;
+}
 div.comments{
 	padding: 0.5em 1.8em;
 	margin:4px;
 	min-height: 8px;
 }
-
-
 
 div.input{
 	display: flex;
@@ -82,11 +89,11 @@ div.input{
 div.input input{
 	flex: 1 1;
 	margin: .1em 1em .1em;
-}
-input{
-	min-width: 150px;
+	padding: 0.3em;
 	max-width: 600px;
-	padding-top: 0.3em;
+}
+div.input h2{
+	margin-top: .2em;
 }
 
 
@@ -95,12 +102,7 @@ div.buttons {
 	padding: 0px 10px 0px;
 	overflow:visible;
 	vertical-align: middle;
-	float:right;
 }
-div.buttons.left {
-	float: left;
-}
-
 button{
 	color: #444444;
 	font-size: 1.3em;
@@ -117,4 +119,26 @@ button.selected[value="1"]{
 }
 button.selected[value="-1"]{
 	color: #FF6666;
+}
+
+
+.cpyElement{
+	font-size:1.1em;
+	padding: 7.5px;
+	min-width: 6em;
+	bottom: .8em;
+	margin-bottom: 0px;
+}
+.cpyElement.right{
+	float:right;
+}
+.select .fstMultipleMode .fstControls{
+	width: 14em;
+}
+.select .fstToggleBtn {
+	min-width: 9em;
+}
+.select input{
+	min-width: 4em;
+	max-width: 9em;
 }

@@ -12,31 +12,27 @@
   	<script type="text/javascript"> window.CSRF_TOKEN = "{{ csrf_token }}"; </script>
 	
   </head>
-
 <body class="main">
 
 <div class="block purple">
-	<h1>What do YOU think about Security Questions?
-		<span style="float:right"> PROFILE # {{ TODO }} </span>
+	<h1>What do YOU think of these Security Questions?
+		<span style="float:right"> PROFILE # {{ user_num }} </span>
 	</h1>
-	<p>Which ones are good? &nbsp;&nbsp; What makes some of them bad? &nbsp;&nbsp; We need your feedback.</p>
-	<p>There isn't a diverse group of people developing security questions, so not all their limitations are being spoken for. 
-	This is an attempt to get feedback from a more representative audience - you.</p>
-	<p><i>Don't answer the questions,</i> comment on what makes them good or bad.</p>
-	<p><b>Things to think about: memorable, unique, secret</b></p>
+	<h2><i>Which ones are good? &nbsp;&nbsp; What makes some of them bad?</i></h2>
+	<br>
+	<h2><b>Don't answer the security questions,</b> comment and vote on as many as you like</h2>
 </div>
 
-
-<!--DETAIL-->
 <div>{% include 'detail.html' %}</div>
-<!--DETAIL-->
-
 
 <div class="input block purple">
 	<h2>Add a new question:	</h2>
-	<input maxlength="100" type="text" id="addQuestion" onKeyDown="if(event.keyCode==13) question(this);" >
+	<input maxlength="100" type="text" id="addQuestion" onKeyDown="if(event.keyCode==13) question(this);" 
+		placeholder="enter a question we missed or your own">
 	<button onclick="question(this)">➤</button>
 </div>
+
 </body>
+<div class="requirements block">{% include 'requirements.html' %}</div>
 
 </html>
