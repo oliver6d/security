@@ -21,14 +21,19 @@ body.example{
 	margin: auto;
 }
 div.requirements{
-    width: 20%;
+    width: 20em;
     position: fixed;
     top: 2em;
-    right: 1em;
+    right: 3em;
     overflow-x: hidden;
+	text-align: right;
+
 }
 .requirements.block{
+	text-align: left;
+	width: 20%;
 	top: 3em;
+	right: 1em;
 }
 
 h1,h2,h3,p{

@@ -50,7 +50,7 @@ def index(request, id):
 	questions = Question.objects.order_by('-text')
 
 	context =  {
-		'user_num':id,
+		'user_id' : Word.objects.get(pk=user.pk).wordText.upper(),
 		'question_list': questions, 
 		'upvote_question': Question.objects.filter(vote__user = user, vote__vote = 1),
 		'downvote_question': Question.objects.filter(vote__user = user, vote__vote = -1),
@@ -149,21 +149,26 @@ def login(request):
 
 	# submits load user, return filled form
 	else:
-		try:
-			user_id = request.POST.get('userInt')
-			user = Profile.objects.get(userNum = user_id)
-			context = {
-				'form': ProfileForm(instance=user),
-			}
-			return render(request, 'logedin.html', context)
+		try: # given word
+			user_word = request.POST.get('userId').lower()
+			user_id = Word.objects.get(wordText=user_word).pk
+			user = Profile.objects.get(pk = user_id)
 		except:
-			# This will clear profile info
-			context = {
-				'form': ProfileForm(),
-				'error': "Profile not found",
-			}
-			return render(request, 'login.html', context)
-
+			try: # given number
+				user_id = request.POST.get('userId')
+				user = Profile.objects.get(userNum = user_id)
+			except:
+				# This will clear profile info
+				context = {
+					'form': ProfileForm(),
+					'error': "Profile not found",
+				}
+				return render(request, 'login.html', context)
+	context = {
+		'form': ProfileForm(instance=user),
+		'user_id' : Word.objects.get(pk=user.pk).wordText.upper()
+	}
+	return render(request, 'logedin.html', context)
 
 def form(request):
 	form = ProfileForm(request.POST)
@@ -175,7 +180,7 @@ def form(request):
 	except:
 		created = False
 		while (not created):
-			id = random.getrandbits(20)
+			id = random.getrandbits(15)
 			user, created = Profile.objects.get_or_create(userNum = id)
 
 	form = ProfileForm(request.POST, instance=user)
