@@ -28,7 +28,6 @@ def detail(request, id):
 		'upvote_question': Question.objects.filter(vote__user = user, vote__vote = 1),
 		'downvote_question': Question.objects.filter(vote__user = user, vote__vote = -1),
 		'upvote_comment': Comment.objects.filter(vote__user = user, vote__vote = 1),
-		'downvote_comment': Comment.objects.filter(vote__user = user, vote__vote = -1),
 	}
 	html = loader.render_to_string(
 		'detail.html',
@@ -54,7 +53,6 @@ def index(request, id):
 		'upvote_question': Question.objects.filter(vote__user = user, vote__vote = 1),
 		'downvote_question': Question.objects.filter(vote__user = user, vote__vote = -1),
 		'upvote_comment': Comment.objects.filter(vote__user = user, vote__vote = 1),
-		'downvote_comment': Comment.objects.filter(vote__user = user, vote__vote = -1),
 	}
 	return render(request, 'index.html', context)
 

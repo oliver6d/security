@@ -49,9 +49,12 @@ function like(button, id) {
         dataType: 'json',
         success: function (data) {
             var y = document.getElementById("Yc"+data.id);
-            y.innerText="♡";
+            y.innerText="🖤";
+            y.className="unselected";
             if(data.value == 1)
-                y.innerText = "♥";
+                y.innerText = "❤";
+                y.className = "selected";
+
         }
       });
     return; 

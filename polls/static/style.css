@@ -137,6 +137,9 @@ button.selected[value="1"]{
 button.selected[value="-1"]{
 	color: #FF6666;
 }
+.like button.selected[value="1"]{
+	color: #FF6666;
+}
 div.buttons.toosmall.like{
 	padding-right: 1em;
 	margin-top: -0.2em;
