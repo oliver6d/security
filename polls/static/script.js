@@ -49,9 +49,9 @@ function like(button, id) {
         dataType: 'json',
         success: function (data) {
             var y = document.getElementById("Yc"+data.id);
-            y.className="unselected";
+            y.innerText="♡";
             if(data.value == 1)
-                y.className = "selected";
+                y.innerText = "♥";
         }
       });
     return; 
