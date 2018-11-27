@@ -14,14 +14,14 @@ body {
     margin: 1em;
 }
 div.main {
-	width: 70vw;
+	width: 70%;
 }
 body.example{
 	max-width: 50em;
 	margin: auto;
 }
 div.requirements{
-    width: 20vw;
+    width: 20%;
     position: fixed;
     top: 2em;
     right: 1em;
@@ -180,8 +180,11 @@ button.selected[value="-1"]{
 	div.input{
 		font-size: 20px;
 	}
-	div.input input{
+	div.input input, div.buttons{
 		font-size: 35px;
+	}
+	div.input button{
+		font-size: 50px;
 	}
 	div.fstElement{
 		font-size: 1.3em;
