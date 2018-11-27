@@ -184,7 +184,7 @@ div.reminder{
 		margin: 0;
 	}
 	div.reminder{
-		font-size: 3em;
+		font-size: 2.3em;
 		display: block;
 		position:fixed;
 		bottom:0;
@@ -193,6 +193,9 @@ div.reminder{
 	}
 	div.requirements{
 		display: none;
+	}
+	div.requirements2.space{
+		height: 2em;
 	}
 	div.requirements2{
 		display: block;
