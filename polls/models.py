@@ -32,7 +32,7 @@ class Profile(models.Model):
 	userNum = models.IntegerField(unique=True)
 	userVotes = models.ManyToManyField(Votable, through='Vote')
 
-	userAge = models.IntegerField(default=0)
+	userAge = models.IntegerField(default=0, null=True)
 	userGender = models.CharField(max_length=3, default='')
 	userEducation = models.CharField(max_length=3, default='')
 	userIncome = models.CharField(max_length=3, default='')

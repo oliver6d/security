@@ -32,6 +32,8 @@
 
 <form action="form/" method="POST">
 {% csrf_token %}
+{{form.userNum}}
+
 <div class="block purple form">
 	<div>
 		{% block title %}

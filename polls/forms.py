@@ -24,7 +24,7 @@ EDUCATIONS = (
     )
 
 class ProfileForm(forms.ModelForm):
-    userNum = forms.IntegerField(required=True,
+    userNum = forms.IntegerField(required=False,
     	widget=forms.HiddenInput(),
     	)
     userAge = forms.IntegerField(required=False,
@@ -60,13 +60,6 @@ class ProfileForm(forms.ModelForm):
 
     #Countries = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
      #                                    choices=OPTIONS)
-
-
-    def clean_user_language(self):
-        cleaned = self.cleaned_data['user_language']
-        
-        # Error: some individual values weren't valid...
-        raise forms.ValidationError('some message')
 
     class Meta:
         model = Profile

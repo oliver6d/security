@@ -166,11 +166,9 @@ def login(request):
 
 def form(request):
 	form = ProfileForm(request.POST)
-	print(form)
-	print(request.POST)
 	# update existing profile
 	try:
-		id = form.userNum
+		id = form['userNum'].value()
 		user = Profile.objects.get(userNum = id)
 	# create new profile
 	except:
@@ -181,7 +179,9 @@ def form(request):
 
 	form = ProfileForm(request.POST, instance=user)
 	if form.is_valid():
-		form.save()
+		instance = form.save(commit=False)
+		instance.userNum = id
+		instance.save()
 	#TODO: check cleaning, add errors
 
 	return HttpResponseRedirect('/polls/example/'+str(id)+'/')
