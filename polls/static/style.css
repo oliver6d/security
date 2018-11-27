@@ -181,6 +181,7 @@ div.reminder{
 		margin: 0;
 	}
 	div.reminder{
+		font-size: 3em;
 		display: block;
 		position:fixed;
 		bottom:0;
