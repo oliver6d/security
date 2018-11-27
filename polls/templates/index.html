@@ -29,7 +29,9 @@
 		{% include 'requirements.html' %}
 	</div>
 	<div>{% include 'detail.html' %}</div>
-
+	<div class="submitted">
+		<h2>Your responses have been submitted automatically.</h2>
+	</div>
 	<div class="input block purple">
 		<h2>Add new question:	</h2>
 		<input maxlength="100" type="text" id="addQuestion" onKeyDown="if(event.keyCode==13) question(this);" 

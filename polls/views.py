@@ -22,12 +22,13 @@ def example(request, id):
 def detail(request, id):
 	user = Profile.objects.get(userNum = id)
 
-	questions = Question.objects.order_by('-text')
+	questions = Question.objects.order_by('-votes')
 	context =  {
 		'question_list': questions, 
 		'upvote_question': Question.objects.filter(vote__user = user, vote__vote = 1),
 		'downvote_question': Question.objects.filter(vote__user = user, vote__vote = -1),
 		'upvote_comment': Comment.objects.filter(vote__user = user, vote__vote = 1),
+		'my_comment': Comment.objects.filter(commentUser = user),
 	}
 	html = loader.render_to_string(
 		'detail.html',
@@ -53,6 +54,7 @@ def index(request, id):
 		'upvote_question': Question.objects.filter(vote__user = user, vote__vote = 1),
 		'downvote_question': Question.objects.filter(vote__user = user, vote__vote = -1),
 		'upvote_comment': Comment.objects.filter(vote__user = user, vote__vote = 1),
+		'my_comment': Comment.objects.filter(commentUser = user),
 	}
 	return render(request, 'index.html', context)
 

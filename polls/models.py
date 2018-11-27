@@ -10,6 +10,8 @@ class Votable(models.Model):
 		return self.vote_set.filter(vote=1).count()
 	def downvotes(self):
 		return self.vote_set.filter(vote=-1).count()
+	def votes(self):
+		return self.vote_set.count()
 	def __str__(self):
 		return self.text
 

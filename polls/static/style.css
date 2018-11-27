@@ -148,6 +148,11 @@ div.buttons.toosmall.like{
 	padding-left: 0.4em;
 	font-size: 1.3em;
 }
+div.submitted{
+	font-size: 0.7em;
+	text-align: center;
+	width: 100%;
+}
 
 
 .cpyElement{
