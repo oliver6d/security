@@ -23,7 +23,7 @@ def example(request, id):
 def detail(request, id):
 	user = Profile.objects.get(userNum = id)
 
-	questions = Question.objects.order_by('-votes')
+	questions = Question.objects.order_by('-text')
 	context =  {
 		'question_list': questions, 
 		'upvote_question': Question.objects.filter(vote__user = user, vote__vote = 1),
