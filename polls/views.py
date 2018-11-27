@@ -150,7 +150,7 @@ def login(request):
 	# submits load user, return filled form
 	else:
 		try: # given word
-			user_word = request.POST.get('userId').lower()
+			user_word = request.POST.get('userId').upper()
 			user_id = Word.objects.get(wordText=user_word).pk
 			user = Profile.objects.get(pk = user_id)
 		except:
