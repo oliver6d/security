@@ -22,7 +22,12 @@
 		<br>
 		<h2><b>Don't answer the security questions,</b> comment and vote on as many as you like</h2>
 	</div>
-
+	<div class="requirements2">
+		<h1> &nbsp;&nbsp; PROFILE # {{ user_num }} </h1>
+	</div>
+	<div class="requirements2 block">
+		{% include 'requirements.html' %}
+	</div>
 	<div>{% include 'detail.html' %}</div>
 
 	<div class="input block purple">
@@ -37,6 +42,9 @@
 </div>
 <div class="requirements block">
 	{% include 'requirements.html' %}
+</div>
+<div class="reminder purple">
+	<h2> Relevant &nbsp;&nbsp;&nbsp;&nbsp; Reproducible &nbsp;&nbsp;&nbsp;&nbsp; Secret &nbsp;&nbsp;&nbsp;&nbsp; Unique</h2>
 </div>
 
 </body>

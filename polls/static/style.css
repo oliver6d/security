@@ -167,7 +167,12 @@ div.buttons.toosmall.like{
 	min-width: 4em;
 	max-width: 9em;
 }
-
+div.requirements2{
+	display: none;
+}
+div.reminder{
+	display: none;
+}
 
 @media only screen and (max-width: 1000px) {
     /* For mobile phones: */
@@ -175,8 +180,18 @@ div.buttons.toosmall.like{
 		width: 100%;
 		margin: 0;
 	}
+	div.reminder{
+		display: block;
+		position:fixed;
+		bottom:0;
+		width: 100%;
+		text-align: center;
+	}
 	div.requirements{
 		display: none;
+	}
+	div.requirements2{
+		display: block;
 	}
 	div.block div.row {
 		display: contents;
