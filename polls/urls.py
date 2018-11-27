@@ -1,4 +1,6 @@
 from django.urls import path
+from django.urls import re_path
+from django.views.generic.base import RedirectView
 from . import views
 
 app_name = 'polls'
@@ -14,5 +16,6 @@ urlpatterns = [
 	path('poll/<int:id>/vote/', views.vote, name='vote'),
 	path('poll/<int:id>/comment/', views.comment, name='comment'),
 	path('poll/<int:id>/question/', views.question, name='question'),
+	re_path(r'^.*/$', RedirectView.as_view(url='/', permanent=False)),
 
 ]

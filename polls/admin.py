@@ -16,10 +16,9 @@ from .models import *
 #     inlines = [ChoiceInline]
 #     list_display = ('question_text', 'pub_date', 'was_published_recently')
 
-admin.site.register(Votable)
+admin.site.register(Profile)
 admin.site.register(Question)
 admin.site.register(Comment)
-admin.site.register(Profile)
 admin.site.register(Vote)
 admin.site.register(Language)
 admin.site.register(Country)

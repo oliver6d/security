@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.template import loader
 from django.views import generic
 from django.utils import timezone
+
 import random
 
 from polls.forms import *
@@ -181,6 +182,7 @@ def form(request):
 	if form.is_valid():
 		instance = form.save(commit=False)
 		instance.userNum = id
+		instance.created = timezone.now()
 		instance.save()
 	#TODO: check cleaning, add errors
 

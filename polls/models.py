@@ -31,6 +31,7 @@ class Other(models.Model):
 class Profile(models.Model):
 	userNum = models.IntegerField(unique=True)
 	userVotes = models.ManyToManyField(Votable, through='Vote')
+	created = models.DateTimeField(null=True)
 
 	userAge = models.IntegerField(default=0, null=True)
 	userGender = models.CharField(max_length=3, default='')
