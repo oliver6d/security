@@ -137,6 +137,14 @@ button.selected[value="1"]{
 button.selected[value="-1"]{
 	color: #FF6666;
 }
+div.buttons.toosmall.like{
+	padding-right: 1em;
+	margin-top: -0.2em;
+}
+.like button{
+	padding-left: 0.4em;
+	font-size: 1.3em;
+}
 
 
 .cpyElement{
@@ -182,6 +190,9 @@ button.selected[value="-1"]{
 	}
 	div.input input, div.buttons, .toosmall{
 		font-size: 35px;
+	}
+	.toosmall.like{
+		font-size: 30px;
 	}
 	div.input button{
 		font-size: 50px;

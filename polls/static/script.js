@@ -15,27 +15,46 @@ function load() {
 */
 
 function toggle(button, id) {
-	$.ajax({
-		type:"POST",
+    $.ajax({
+        type:"POST",
         url: 'vote/',
         data: {
-        	'value': button.value,
-        	'id': id,
-        	'csrfmiddlewaretoken': window.CSRF_TOKEN
+            'value': button.value,
+            'id': id,
+            'csrfmiddlewaretoken': window.CSRF_TOKEN
         },
         dataType: 'json',
         success: function (data) {
-        	var y = document.getElementById("Y"+data.id);
-        	y.className="unselected";
-        	var n = document.getElementById("N"+data.id);
-        	n.className="unselected";
-        	if(data.value == -1)
-	        	n.className = "selected";
-	       	if(data.value == 1)
-	        	y.className = "selected";
+            var y = document.getElementById("Y"+data.id);
+            y.className="unselected";
+            var n = document.getElementById("N"+data.id);
+            n.className="unselected";
+            if(data.value == -1)
+                n.className = "selected";
+            if(data.value == 1)
+                y.className = "selected";
         }
       });
-	return;	
+    return; 
+};
+function like(button, id) {
+    $.ajax({
+        type:"POST",
+        url: 'vote/',
+        data: {
+            'value': button.value,
+            'id': id,
+            'csrfmiddlewaretoken': window.CSRF_TOKEN
+        },
+        dataType: 'json',
+        success: function (data) {
+            var y = document.getElementById("Yc"+data.id);
+            y.className="unselected";
+            if(data.value == 1)
+                y.className = "selected";
+        }
+      });
+    return; 
 };
 
 function comment(button, id) {
