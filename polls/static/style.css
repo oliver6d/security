@@ -47,7 +47,7 @@ h2{
 	flex-shrink: 1;
 }
 p{
-	padding: 0.2em;
+	padding: 0.5em 0.2em 0.3em;
 }
 img{
 	width: 105%;
@@ -180,7 +180,7 @@ button.selected[value="-1"]{
 	div.input{
 		font-size: 20px;
 	}
-	div.input input, div.buttons{
+	div.input input, div.buttons, .toosmall{
 		font-size: 35px;
 	}
 	div.input button{
