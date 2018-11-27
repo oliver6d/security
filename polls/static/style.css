@@ -4,26 +4,31 @@
     colorGreen: #5FDD9D;
     colorPurple: #88498F;
 */
+html, form, input {
+  font-size:16px;
+}
 body {
     background: white;
 	font-family: 'Roboto', sans-serif;
 	font-weight:400;
-    font-size: 1em;
     margin: 1em;
 }
-body.main {
-	width: 70%;
+div.main {
+	width: 70vw;
 }
 body.example{
 	max-width: 50em;
 	margin: auto;
 }
 div.requirements{
-    width: 20%;
+    width: 20vw;
     position: fixed;
-    top: 3em;
+    top: 2em;
     right: 1em;
     overflow-x: hidden;
+}
+.requirements.block{
+	top: 3em;
 }
 
 h1,h2,h3,p{
@@ -32,19 +37,22 @@ h1,h2,h3,p{
 }
 h1{
 	font-size: 1.5em;
+	font-weight: 600;
 	font-family: 'Handlee', cursive;
-    font-weight: 600;
 }
 /* questions */
 h2{
-	flex-shrink: 1;
 	font-size: 1.2em;
 	font-weight: 300;
+	flex-shrink: 1;
 }
 p{
 	padding: 0.2em;
 }
-
+img{
+	width: 105%;
+	margin-left: -3%;
+}
 
 div.block{
 	background-color: #E0E0E0;
@@ -96,7 +104,6 @@ div.input{
 }
 div.input input{
 	flex: 1 1;
-	font-size: 0.8em;
 	margin: .1em 1em .1em;
 	padding: 0.3em;
 	max-width: 30em;
@@ -107,6 +114,7 @@ div.input h2{
 
 
 div.buttons {
+	display: inline-block;
 	margin: 0px;
 	padding: 0px 10px 0px;
 	overflow:visible;
@@ -114,11 +122,11 @@ div.buttons {
 }
 button{
 	color: #444444;
-	font-size: 1.3em;
 	border:none;
 	padding: 0em;
 	margin: -0.1em;
 	background-color: transparent;
+	font-size: 1.5em;
 }
 .purple.input button{
 	color: white;
@@ -132,11 +140,11 @@ button.selected[value="-1"]{
 
 
 .cpyElement{
-	font-size:1.1em;
-	padding: 7.5px;
+	padding: 0.5em;
 	min-width: 6em;
 	bottom: .8em;
 	margin-bottom: 0px;
+	font-size: 1.05rem;
 }
 .cpyElement.right{
 	float:right;
@@ -145,7 +153,7 @@ button.selected[value="-1"]{
 	width: 14em;
 }
 .select .fstToggleBtn {
-	min-width: 9em;
+	min-width: 9.5em;
 }
 .select input{
 	min-width: 4em;
@@ -153,22 +161,32 @@ button.selected[value="-1"]{
 }
 
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1000px) {
     /* For mobile phones: */
-    
-	body, body.main {
+	div.main {
 		width: 100%;
-		font-size: 1.5em;
 		margin: 0;
 	}
 	div.requirements{
 		display: none;
 	}
-	div.row {
+	div.block div.row {
 		display: contents;
 	}
 	div.blockinfo, div.blockbody{
 		display: block;
 		width: 100%;
+	}
+	div.input{
+		font-size: 20px;
+	}
+	div.input input{
+		font-size: 35px;
+	}
+	div.fstElement{
+		font-size: 1.3em;
+	}
+	.cpyElement.fstElement{
+		font-size: 2em;
 	}
 }

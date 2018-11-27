@@ -7,7 +7,7 @@
 <div id="detail">
 {% for question in question_list %}
 <div class="block">
-	<h2>{{ question.text }}
+	<h2>
 		<div class="buttons right">
 			{{ question.upvotes }}
 			<button id="Y{{ question.id }}" value="1" onclick="toggle(this, {{question.id}})" 
@@ -16,16 +16,18 @@
 				{% if question in downvote_question %} class="selected" {% endif %}  >▼</button>
 			{{ question.downvotes }}
 		</div>
+		{{ question.text }}
 	</h2>
 	<div class="comments">
 		{% for comment in question.comment_set.all %}
 			<p>
-			<div class="buttons left">
-				{{ comment.upvotes }}
-				<button name="up" id="Y{{ comment.id }}" value="1" onclick="toggle(this, {{comment.id}})"
-				{% if comment in upvote_comment %} class="selected" {% endif %}  >▲</button>
-			</div>
-			{{ comment.text }} </p>
+				<div class="buttons left">
+					{{ comment.upvotes }}
+					<button name="up" id="Y{{ comment.id }}" value="1" onclick="toggle(this, {{comment.id}})"
+					{% if comment in upvote_comment %} class="selected" {% endif %}  >▲</button>
+				</div>
+				{{ comment.text }} 
+			</p>
 		{% endfor %}
 	</div>
 	<div class=input>
@@ -36,6 +38,8 @@
 </div>
 {% endfor %}
 </div>
+
+
 {% else %}
 	<h2>No questions available, add one below</h2>
 {% endif %}

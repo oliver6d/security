@@ -12,9 +12,8 @@
   	<script type="text/javascript"> window.CSRF_TOKEN = "{{ csrf_token }}"; </script>
 	
   </head>
-<body class="main">
+<body>
 
-<h2><div class="right"> PROFILE # {{ user_num }} </div></h2>
 
 <div class="main">
 	<div class="block purple">
@@ -29,12 +28,16 @@
 	<div class="input block purple">
 		<h2>Add new question:	</h2>
 		<input maxlength="100" type="text" id="addQuestion" onKeyDown="if(event.keyCode==13) question(this);" 
-			placeholder="enter a question we missed or your own">
+			placeholder="enter a question we missed">
 		<button onclick="question(this)">➤</button>
 	</div>
 </div>
-
-<div class="requirements block">{% include 'requirements.html' %}</div>
+<div class="requirements">
+	<h1> &nbsp;&nbsp; PROFILE # {{ user_num }} </h1>
+</div>
+<div class="requirements block">
+	{% include 'requirements.html' %}
+</div>
 
 </body>
 </html>

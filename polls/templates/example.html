@@ -12,6 +12,7 @@
   	<script type="text/javascript"> window.CSRF_TOKEN = "{{ csrf_token }}"; </script>
 	
   </head>
+{% load static %}
 
 <body class="example">
 
@@ -33,26 +34,34 @@
 
 
 <h1>Example Question</h1>
-<div class="block">
-	<h2> What is your mother's maiden name?</h2>
-	<div class="buttons right"> 1 <button>▲</button> <button>▼</button> 6 </div>
+
+<img src="{% static 'example.png' %}" alt="Example">
+<!--div class="block">
+	<h2>
+		<div class="buttons right"> 1 <button>▲</button> <button>▼</button> 6 </div>
+		What is your mother's maiden name? 
+	</h2>
+	
 	<div class="comments">
 		<p>
 			<div class="buttons left">1<button>▲</button></div>
 			My mother's maiden name was really common, it could be guessed in a few tries
-		</p><p>
+		</p>
+		<p>
 			<div class="buttons left">8<button>▲</button></div>
 			That information is available in public records and on facebook
 		</p>
 	</div>
 	<div class=input>
-		<input size="15" type="text" value="My mother didn't change her name whe..." >
+		<input size="15" type="text" value="My mother didn't change her name..." >
 		<button>➤</button>
 	</div>
-</div>
+</div-->
 
 <form action="/polls/poll/{{id}}">
 	<input type="submit" value="Continue" class="cpyELement fstElement right">
+	<h2>You can vote and respond to as many questions as you like.
+		<br> Thanks for your input!</h2>
 </form>
 
 </body>
