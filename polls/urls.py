@@ -15,6 +15,7 @@ urlpatterns = [
 	# page section refreshed
 	path('poll/<int:id>/vote/', views.vote, name='vote'),
 	path('poll/<int:id>/comment/', views.comment, name='comment'),
+	path('poll/<int:id>/delete/', views.delete, name='delete'),
 	path('poll/<int:id>/question/', views.question, name='question'),
 	re_path(r'^.*/$', RedirectView.as_view(url='/', permanent=False)),
 

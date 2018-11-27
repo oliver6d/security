@@ -60,27 +60,45 @@ function like(button, id) {
     return; 
 };
 
-function comment(button, id) {
-	var text = document.getElementById("comment"+id).value;
+
+function addcomment(button, id) {
+    var box = document.getElementById("comment"+id);
+    var text = box.value;
     if (text.length < 5) return;
 
-	$.ajax({
-		type:"POST",
+    $.ajax({
+        type:"POST",
         url: 'comment/',
         data: {
-        	'comment': text,
-        	'id': id,
-        	'csrfmiddlewaretoken': window.CSRF_TOKEN
+            'comment': text,
+            'question_id': id,
+            'csrfmiddlewaretoken': window.CSRF_TOKEN
         },
         dataType: 'json',
         success: function (data) {
             $('#detail').replaceWith(data.detail_html);
             box.value = "";
         }
-      });
-	return;	
+    });
+    return; 
 };
 
+
+function deleteComment(button, id) {
+    $.ajax({
+        type:"POST",
+        url: 'delete/',
+        data: {
+            'comment_id': id,
+            'csrfmiddlewaretoken': window.CSRF_TOKEN
+        },
+        dataType: 'json',
+        success: function (data) {
+            $('#detail').replaceWith(data.detail_html);
+        }
+      });
+    return; 
+};
 
 function question(button) {
     var box = document.getElementById("addQuestion");

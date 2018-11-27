@@ -71,7 +71,7 @@ def comment(request, id):
 	if(len(comment) < 3):
 		return
 
-	question_id = request.POST.get('id')
+	question_id = request.POST.get('question_id')
 	question = get_object_or_404(Question, pk=question_id)
 
 	c = Comment(text=comment, 
@@ -87,7 +87,7 @@ def delete(request, id):
 	except ObjectDoesNotExist:
 		return HttpResponseRedirect('/')
 
-	comment_id = request.POST.get('comment')
+	comment_id = request.POST.get('comment_id')
 	try:
 		c = Comment.objects.get(pk = comment_id)
 		c.delete()

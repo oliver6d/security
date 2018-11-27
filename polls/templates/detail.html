@@ -23,18 +23,23 @@
 			<p>
 				<div class="toosmall like buttons left">
 					{{ comment.upvotes }}
-					<button name="up" id="Yc{{ comment.id }}" value="1" onclick="like(this, {{comment.id}})"
+					<button id="Yc{{ comment.id }}" value="1" onclick="like(this, {{comment.id}})"
 					"{% if comment in upvote_comment %} class="selected" {% endif %}">
 					{% if comment in upvote_comment %} ❤ {% else %} 🖤 {% endif %} </button>
 				</div>
+				{% if comment in my_comment %}
+				<div class="buttons right">
+					<button style="color:#FF6666" id="delete{{ comment.id }}" onclick="deleteComment(this, {{comment.id}})"> X </button>
+				</div>
+				{% endif %}
 				{{ comment.text }} 
 			</p>
 		{% endfor %}
 	</div>
 	<div class=input>
 		<input size="15" maxlength="150" type="text" id="comment{{ question.id }}"
-		onKeyDown="if(event.keyCode==13) comment(this, {{question.id}});" >
-		<button onclick="comment(this, {{question.id}})">➤</button>
+		onKeyDown="if(event.keyCode==13) addcomment(this, {{question.id}});" >
+		<button onclick="addcomment(this, {{question.id}})">➤</button>
 	</div>
 </div>
 {% endfor %}
