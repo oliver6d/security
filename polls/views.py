@@ -23,7 +23,7 @@ def example(request, id):
 def detail(request, id):
 	user = Profile.objects.get(userNum = id)
 
-	questions = Question.objects.order_by('-text')
+	questions = Question.objects.order_by('text')
 	context =  {
 		'question_list': questions, 
 		'upvote_question': Question.objects.filter(vote__user = user, vote__vote = 1),
@@ -47,7 +47,7 @@ def index(request, id):
 	except ObjectDoesNotExist:
 		return HttpResponseRedirect('/')
 
-	questions = Question.objects.order_by('-text')
+	questions = Question.objects.order_by('text')
 
 	context =  {
 		'user_id' : Word.objects.get(pk=user.pk).wordText.upper(),
