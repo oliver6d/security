@@ -23,7 +23,7 @@
 		<h2><b>Don't answer the security questions,</b> comment and vote on as many as you like</h2>
 	</div>
 	<div class="requirements2">
-		<h1> &nbsp;&nbsp; PROFILE ID: {{ user_id }} </h1>
+		<h1 class="idlabel"> &nbsp;&nbsp; PROFILE ID: 	<span class="idtext"> {{ user_id }} </span> </h1>
 	</div>
 	<div class="requirements2 block">
 		{% include 'requirements.html' %}
@@ -46,7 +46,7 @@
 
 
 <div class="requirements">
-	<h1> PROFILE ID: {{ user_id }} </h1>
+	<h1> PROFILE ID: <span class="idtext"> {{ user_id }} </span> </h1>
 </div>
 <div class="requirements block">
 	{% include 'requirements.html' %}
