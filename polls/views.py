@@ -186,6 +186,10 @@ def form(request):
 	form = ProfileForm(request.POST, instance=user)
 	if form.is_valid():
 		instance = form.save(commit=False)
+		for lang in form.cleaned_data['userLanguage']:
+			instance.userLanguage.add(lang)
+		for cntry in form.cleaned_data['userCountry']:
+			instance.userCountry.add(cntry)
 		instance.userNum = id
 		instance.created = timezone.now()
 		instance.save()

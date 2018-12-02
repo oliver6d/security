@@ -1315,7 +1315,7 @@
 
         placeholder: 'Choose option',
         searchPlaceholder: 'Search options',
-        noResultsText: 'Add ',
+        noResultsText: 'None found ',
         userOptionPrefix: 'Add '
 
     };

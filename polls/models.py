@@ -21,14 +21,17 @@ class Word(models.Model):
 class Language(models.Model):
 	languageText = models.CharField(max_length=20, default='')
 	def __str__(self):	return str(self.languageText)
+	class Meta: ordering = ('languageText',)
 
 class Country(models.Model):
 	countryText = models.CharField(max_length=30, default='')
 	def __str__(self):	return str(self.countryText)
+	class Meta: ordering = ('countryText',)
 
 class Other(models.Model):
 	otherText = models.CharField(max_length=30, default='')
 	def __str__(self):	return str(self.otherText)
+	class Meta: ordering = ('otherText',)
 
 
 class Profile(models.Model):
